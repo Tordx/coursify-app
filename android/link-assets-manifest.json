@@ -1,0 +1,17 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "src/Assets/Fonts/castforce.otf",
+      "sha1": "eff4cec7b95f6c4b799de9c4340e1947db30de15"
+    },
+    {
+      "path": "src/Assets/Fonts/montel.otf",
+      "sha1": "ad487303ad69e554a22773d9a7ab881d9d32e63f"
+    },
+    {
+      "path": "src/Assets/Fonts/monthe.otf",
+      "sha1": "745adb2b70da889431969cda968e19e4ecd209bd"
+    }
+  ]
+}
