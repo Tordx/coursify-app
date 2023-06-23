@@ -9,7 +9,7 @@ import Verify from '../Screens/Signup/verify'
 import Signup from '../Screens/Signup/signup'
 import Bottomtabs from './bottomtabs'
 import Reset from '../Screens/Initial/reset'
-import Questionaires from '../Screens/questionaires'
+import Questionaires from '../Screens/contents/questionaires'
 
 type Props = {}
 
