@@ -1,11 +1,12 @@
 import { View, Text } from 'react-native'
 import React from 'react'
+import { styles } from '../../Assets/Styles'
 
 type Props = {}
 
 const Home = (props: Props) => {
   return (
-    <View>
+    <View style = {styles.container}>
       <Text>Home</Text>
     </View>
   )
