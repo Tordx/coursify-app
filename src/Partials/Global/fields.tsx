@@ -1,10 +1,11 @@
 import { View, Text, TextInput, Pressable, ViewStyle, TextStyle } from 'react-native'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { styles } from '../../Assets/Styles'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { black, mode, theme, transparent, white } from '../../Assets/Colors'
 import SelectDropdown from 'react-native-select-dropdown'
+import { Radio } from './buttons'
 
 type Props = {
 
@@ -32,7 +33,13 @@ type DropProps = {
   defaultButtonText?: string,
 }
 
+type QuestionsProps = {
 
+  onValueChange?: (newValue: number) => void,
+  question?: string,
+
+
+}
 
 export const Input = (props: Props) => {
   return (
@@ -99,4 +106,80 @@ export const Dropdown = (props: DropProps) => {
     </View>
   )
 
+};
+
+export const Questions = (props: QuestionsProps) => {
+
+  
+  const [first, setfirst] = useState(false);
+  const [second, setsecond] = useState(false);
+  const [third, setthird] = useState(false);
+  const [fourth, setfourth] = useState(false);
+  const [fifth, setfifth] = useState(false);
+  const [value, setvalue] = useState(0);
+
+  const handleValueChange = (selectedOption: number) => {
+    setvalue(selectedOption);
+    setfirst(selectedOption === 1);
+    setsecond(selectedOption === 2);
+    setthird(selectedOption === 3);
+    setfourth(selectedOption === 4);
+    setfifth(selectedOption === 5);
+    props.onValueChange ? props.onValueChange(selectedOption) : null;
+  };
+
+
+  return (
+    <>
+    <Text style = {[styles.alertmodaltext, { width: '95%', textAlign: 'center', marginVertical: 10,}]}>{props.question}</Text>
+    <View style = {{
+      flexDirection: 'row',
+      width: '100%',
+      justifyContent: 'center',
+      alignItems: 'center',
+      alignContent: 'center',
+      marginBottom: 20,
+      paddingBottom: 10,
+      borderBottomWidth: .5,
+      borderColor: theme.accentd
+
+    }} >
+      <Radio
+
+          pressed = {first}
+          onPress={() => { handleValueChange(1)}}
+          tag='1'
+      
+      />
+      <Radio 
+      
+          pressed = {second}
+          onPress={() => { handleValueChange(2)}}
+          tag='2'
+      
+      />
+      <Radio 
+      
+      pressed = {third}
+          onPress={() => { handleValueChange(3)}}
+          tag='3'
+      
+      />
+      <Radio 
+      
+          pressed = {fourth}
+          onPress={() => { handleValueChange(4)}}
+          tag='4'
+      
+      />
+      <Radio 
+      
+      pressed = {fifth}
+          onPress={() => { handleValueChange(5)}}
+          tag='5'
+      
+      />
+    </View>
+    </>
+  )
 }
