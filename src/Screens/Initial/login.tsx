@@ -68,7 +68,7 @@ const Login = () => {
       <Image
         source={require('../../Assets/Images/loginpic.png')}
         resizeMode='contain'
-        style = {{width: 400, height: '25%', alignSelf: 'center'}}
+        style = {{width: 400, height: '25%', alignSelf: 'center', marginBottom: 10}}
       />
       <Text style = {styles.appname}> {appname.toUpperCase()} </Text>
       <Input
