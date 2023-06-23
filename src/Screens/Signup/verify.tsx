@@ -1,8 +1,8 @@
-import { View, Text, Alert } from 'react-native'
+import { View, Text, Alert, Pressable } from 'react-native'
 import React, { useState } from 'react'
 import { styles } from '../../Assets/Styles';
 import { Input } from '../../Partials/Global/fields';
-import { black, errors, mode, white } from '../../Assets/Colors';
+import { black, errors, mode, success, white } from '../../Assets/Colors';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { LoginButton, TopExit } from '../../Partials/Global/buttons';
 import { useNavigation } from '@react-navigation/native';
@@ -85,15 +85,12 @@ const Verify: React.FC =  () => {
         title='Continue'
         onPress={initiateSignup}
       />
-      <View style = {styles.signupdiscontainer}>
-        <Icon
-          name = 'information-outline'
-          size={30}
-          color={errors.M002}
-          style = {{alignSelf: 'center'}}
-        />
-      <Text style = {styles.signupdisclosure}>{disclosure}</Text>
-      </View>
+      <Pressable onPress={() => {navigation.navigate('Verify' as never)}}>
+        <Text style = {[styles.signupbutton, {textAlign: 'center', fontSize: 13}]}>By signing up you understand our 
+          <Text style = {{color: mode ? success.G006 : success.G002}}> Terms of use </Text> and
+          <Text style = {{color: mode ? success.G006 : success.G002}}> Conditions</Text>
+        </Text>
+      </Pressable>
       <LoadingModal
         visible = {loadingmodal}
         title={'Verifying TruCredit ID, please wait.'}
