@@ -89,7 +89,7 @@ export const styles = StyleSheet.create({
         marginRight: 10,
     },
     appname:{
-        fontSize: 30,
+        fontSize: 40,
         fontFamily: 'monthe',
         marginBottom: 20,
         color: mode? white.W003 : black.B004
@@ -220,6 +220,33 @@ export const styles = StyleSheet.create({
         top: 20,
         left: 15,
         position: 'absolute'
+    },
+    tabicon:{
+        justifyContent: 'center',
+        alignItems: 'center',
+        
+    },
+    headername: {
+        fontFamily: 'monthe',
+        fontSize: 40,
+        textAlign: 'center'
+    },
+    
+    headerprofilecontainer: {
+        position: 'absolute',
+        right: 5,
+        justifyContent: 'center',
+        height: '100%',
+        alignItems: 'center',
+    },
+    headerprofile: {
+        width: 45,
+        height: 45,
+        borderRadius: 100
+    },
+    assessmenttext: {
+        fontFamily: 'monthe',
+        fontSize: 70
     }
 
 
