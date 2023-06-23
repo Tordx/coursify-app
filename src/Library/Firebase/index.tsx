@@ -11,7 +11,7 @@ export const loginauth = async(email: string, password: string, navigation: any)
           if (!user.displayName || user.phoneNumber || user.photoURL) {
             navigation.navigate('Signup' as never)
           } else {
-            navigation.navigate('Home' as never)
+            navigation.navigate('Bottomtabs' as never)
             return userCredential.user
           }
         } else {
