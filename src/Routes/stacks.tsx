@@ -9,6 +9,7 @@ import Verify from '../Screens/Signup/verify'
 import Signup from '../Screens/Signup/signup'
 import Bottomtabs from './bottomtabs'
 import Reset from '../Screens/Initial/reset'
+import Questionaires from '../Screens/questionaires'
 
 type Props = {}
 
@@ -64,6 +65,14 @@ const Stacks = (props: Props) => {
         options={{
           headerShown: false,
           cardStyleInterpolator: CardStyleInterpolators.forFadeFromBottomAndroid,
+        }}
+      />
+      <Stack.Screen
+        name = 'Questionaires'
+        component = {Questionaires}
+        options={{
+          headerShown: false,
+          cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
         }}
       />
     </Stack.Navigator>
