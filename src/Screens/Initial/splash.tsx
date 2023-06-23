@@ -2,8 +2,6 @@ import { View, Text, Image } from 'react-native'
 import React, { useEffect } from 'react'
 import { styles } from '../../Assets/Styles'
 import { calcuplus } from '../../Assets/Constants'
-import Numpad from '../../Components/Initial/numpad'
-import Results from '../../Components/Initial/results'
 import Login from './login'
 import { useNavigation } from '@react-navigation/native'
 
