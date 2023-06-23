@@ -3,6 +3,7 @@ import React from 'react'
 import { styles } from '../../Assets/Styles'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { black, errors, mode, theme, white } from '../../Assets/Colors'
+import { TouchableOpacity } from 'react-native-gesture-handler'
 type Props = {
 
     numbers?: string,
@@ -10,6 +11,8 @@ type Props = {
     name?: string,
     style?: ViewStyle,
     title?: string,
+    tag?: string,
+    pressed?: boolean,
 
 
 }
@@ -90,5 +93,16 @@ export const TopExit = (props: Props) => {
         size={35}
       />
     </Pressable>
+  )
+}
+
+export const Radio = (props: Props) => {
+  return (
+    <View style={styles.radioButtonContainer}>
+   <Pressable onPress={props.onPress} style={styles.radioButton}>
+    {props.pressed ? <View style={styles.radioButtonIcon}/> : null }
+   </Pressable>
+     <Text style={styles.radioButtonText}>{props.tag}</Text>
+ </View>
   )
 }
