@@ -99,7 +99,7 @@ const Login = () => {
       />
       <Pressable onPress={() => {navigation.navigate('Verify' as never)}}>
         <Text style = {styles.signupbutton}>Don't have an account yet? 
-          <Text style = {{color: theme.accentc}}> Sign up</Text>
+          <Text style = {{color: black.main}}> Sign up</Text>
         </Text>
       </Pressable>
       <LoadingModal
