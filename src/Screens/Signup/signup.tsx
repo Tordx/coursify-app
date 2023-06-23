@@ -10,6 +10,8 @@ import { LoginButton, TopExit } from '../../Partials/Global/buttons'
 import { useFocusEffect, useNavigation } from '@react-navigation/native'
 import { openEmailApp } from '../../Library/Functions'
 import { strand } from '../../Assets/Constants'
+import { info } from '../../Library/Firebase'
+
 
 type Props = {}
 
@@ -30,10 +32,12 @@ const Signup = (props: Props) => {
   const [province, setprovince] = useState('');
   const [phonenumber, setphonenumber] = useState('');
   const [gender, setgender] = useState('');
+  const [strands, setStrands] = useState('');
   const navigation = useNavigation();
   const [time, settime] = useState(30);
   const [appStateVisible, setAppStateVisible] = useState(appState.current);
   const user = firebase.auth().currentUser;
+
 
   useEffect(() => {
     const subscription = AppState.addEventListener('change', nextAppState => {
@@ -133,7 +137,7 @@ const timecount = (count: number) => {
 
   return (
     <View style = {styles.container}>
-      <Text style = {styles.vermodaltitle}>SIGN UP</Text>
+      <Text style = {styles.vermodaltitle}>ADDITIONAL INFORMATION</Text>
       <Text style = {[styles.signupbutton, {justifyContent: 'center', textAlign: 'center'}]}>Amazing! you have successfully verified your email, now finish up the sign up process to use the app!</Text>
      <Input
         placeholderTextColor= {mode ? white.W001 : black.B005}
@@ -169,6 +173,7 @@ const timecount = (count: number) => {
       data={strand}
       onSelect={(selectedItem, index) => {
         console.log(selectedItem, index)
+        setStrands(selectedItem)
       }}
       buttonTextAfterSelection={(selectedItem, index) => {
         return selectedItem
@@ -179,7 +184,7 @@ const timecount = (count: number) => {
       />
       <LoginButton
         title='SIGN UP'
-        onPress={() => {navigation.navigate('Bottomtabs' as never)}}
+        onPress={() => info(firstname , lastname , phonenumber , gender,  strands ,  navigation )}
       />
       <LoadingModal
         title='Checking email verification status'
