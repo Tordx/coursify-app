@@ -4,11 +4,12 @@ import { styles } from '../../Assets/Styles'
 import { useSelector } from 'react-redux'
 import { firebase } from '@react-native-firebase/auth'
 import { AlertModal, ButtonModal, LoadingModal, SuccessModal } from '../../Partials/Global/modals'
-import { Input } from '../../Partials/Global/fields'
+import { Dropdown, Input } from '../../Partials/Global/fields'
 import { black, mode, theme, white, success } from '../../Assets/Colors'
 import { LoginButton, TopExit } from '../../Partials/Global/buttons'
-import { useNavigation } from '@react-navigation/native'
+import { useFocusEffect, useNavigation } from '@react-navigation/native'
 import { openEmailApp } from '../../Library/Functions'
+import { strand } from '../../Assets/Constants'
 
 type Props = {}
 
@@ -44,6 +45,7 @@ const Signup = (props: Props) => {
         if(nextAppState === 'active'){
           if(!user?.emailVerified){
             setvermodal(true)
+            settime(0)
             setmodal(false)
           }
         }
@@ -82,13 +84,14 @@ const Signup = (props: Props) => {
   //   return () => unsubscribe();
   // }, []);
 
-useEffect(() => {
+  useFocusEffect(() => {
   if(time < 31) {
   timecount(1000)
   }
   console.log(time);
    return
 })
+
 
 const timecount = (count: number) => {
   
@@ -160,22 +163,23 @@ const timecount = (count: number) => {
         value = {gender}
         onChangeText={(value) => setgender(value)}
       />
-      <Input
-        placeholderTextColor= {mode ? white.W001 : black.B005}
-        name = 'city-variant-outline'
-        placeholder= "City"
-        value = {city}
-        onChangeText={(value) => setcity(value)}
-      />
-      <Input
-        placeholderTextColor= {mode ? white.W001 : black.B005}
-        name = 'map-outline'
-        placeholder= "State or Province"
-        value = {province}
-        onChangeText={(value) => setprovince(value)}
+      <Dropdown
+      name = 'school-outline'
+      defaultButtonText = 'Strand'
+      data={strand}
+      onSelect={(selectedItem, index) => {
+        console.log(selectedItem, index)
+      }}
+      buttonTextAfterSelection={(selectedItem, index) => {
+        return selectedItem
+      }}
+      rowTextForSelection={(item, index) => {
+        return item
+      }}
       />
       <LoginButton
         title='SIGN UP'
+        onPress={() => {navigation.navigate('Bottomtabs' as never)}}
       />
       <LoadingModal
         title='Checking email verification status'
