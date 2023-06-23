@@ -79,13 +79,13 @@ const darkmode = () =>{
 const colors: PaletteOptions = {
 
     theme: {
-        dark: '#0b1e51',
-        light: '#d2dfea',
-        primary: '#4d49c4',
-        secondary: '#1cbef5',
-        accenta: '#685bd4',
-        accentb: '#7c84c7',
-        accentc: '#9c93cd',
+        dark: '#257c98',
+        light: '#f6f9fa',
+        primary: '#7ec9df',
+        secondary: '#3aa7d3',
+        accenta: '#7ec9df',
+        accentb: '#67afc6',
+        accentc: '#257c98',
         accentd: '#83635a',
     },
 
