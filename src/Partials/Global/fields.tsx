@@ -35,8 +35,9 @@ type DropProps = {
 
 type QuestionsProps = {
 
-  onValueChange?: (newValue: number) => void,
+  onValueChange?: (newValue: string) => void,
   question?: string,
+  courseIndex?: number,
 
 
 }
@@ -116,15 +117,15 @@ export const Questions = (props: QuestionsProps) => {
   const [third, setthird] = useState(false);
   const [fourth, setfourth] = useState(false);
   const [fifth, setfifth] = useState(false);
-  const [value, setvalue] = useState(0);
+  const [value, setvalue] = useState('');
 
-  const handleValueChange = (selectedOption: number) => {
+  const handleValueChange = (selectedOption: string) => {
     setvalue(selectedOption);
-    setfirst(selectedOption === 1);
-    setsecond(selectedOption === 2);
-    setthird(selectedOption === 3);
-    setfourth(selectedOption === 4);
-    setfifth(selectedOption === 5);
+    setfirst(selectedOption === "1");
+    setsecond(selectedOption === "2");
+    setthird(selectedOption === "3");
+    setfourth(selectedOption === "4");
+    setfifth(selectedOption === "5");
     props.onValueChange ? props.onValueChange(selectedOption) : null;
   };
 
@@ -147,35 +148,35 @@ export const Questions = (props: QuestionsProps) => {
       <Radio
 
           pressed = {first}
-          onPress={() => { handleValueChange(1)}}
+          onPress={() => { handleValueChange("1")}}
           tag='1'
       
       />
       <Radio 
       
           pressed = {second}
-          onPress={() => { handleValueChange(2)}}
+          onPress={() => { handleValueChange("2")}}
           tag='2'
       
       />
       <Radio 
       
       pressed = {third}
-          onPress={() => { handleValueChange(3)}}
+          onPress={() => { handleValueChange("3")}}
           tag='3'
       
       />
       <Radio 
       
           pressed = {fourth}
-          onPress={() => { handleValueChange(4)}}
+          onPress={() => { handleValueChange("4")}}
           tag='4'
       
       />
       <Radio 
       
       pressed = {fifth}
-          onPress={() => { handleValueChange(5)}}
+          onPress={() => { handleValueChange('5')}}
           tag='5'
       
       />
