@@ -19,10 +19,6 @@ const Home = (props: Props) => {
   useEffect(() => {
   
     getAllData
-    console.log('====================================getAllData');
-    console.log(getAllData);
-    console.log('====================================getAllData');
-   
   }, [])
 
   const [data, setData] = useState<Item[]>([
