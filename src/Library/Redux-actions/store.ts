@@ -3,6 +3,7 @@ import usertokenslice from "./usertokenslice"
 import schoolingslice from "./schoolingslice"
 import scoreslice from "./scoreslice"
 
+import courseslice from "./courseslice"
 
 export default configureStore({
 
@@ -11,6 +12,7 @@ export default configureStore({
         _usertoken : usertokenslice,
         _schooling : schoolingslice,
         _score : scoreslice,
+        _course : courseslice
 
     },
     

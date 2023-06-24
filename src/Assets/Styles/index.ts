@@ -12,7 +12,8 @@ export const styles = StyleSheet.create({
         height: '100%',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: backgroundmode ? theme.dark : theme.light
+        backgroundColor: '#248BB8'
+        // backgroundColor: backgroundmode ? theme.dark : theme.light
     },
     passcodetitle: {
 
@@ -92,7 +93,8 @@ export const styles = StyleSheet.create({
         fontSize: 40,
         fontFamily: 'monthe',
         marginBottom: 20,
-        color: mode? white.W003 : black.B004
+        color:'white'
+        // color: mode? white.W003 : black.B004
     },
     loginbutton: {
 
@@ -133,7 +135,8 @@ export const styles = StyleSheet.create({
 
     },
     alertmodaltext: {
-        color: mode ? white.main : black.main,
+        color: 'white',
+        // color: mode ? white.main : black.main,
         fontSize: 20,
         fontFamily: 'montel'
     },
@@ -228,8 +231,9 @@ export const styles = StyleSheet.create({
     },
     headername: {
         fontFamily: 'monthe',
-        fontSize: 40,
-        textAlign: 'center'
+        fontSize: 30,
+        textAlign: 'center',
+        color: 'white'
     },
     
     headerprofilecontainer: {
@@ -247,7 +251,8 @@ export const styles = StyleSheet.create({
     assessmenttext: {
         fontFamily: 'monthe',
         fontSize: 70,
-        color: mode? white.W003 : black.B001,
+        // color: mode? white.W003 : black.B001,
+        color: 'white'
     },
     radioButtonContainer: {
         flexDirection: "row",

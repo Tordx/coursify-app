@@ -3,11 +3,13 @@ import firestore from '@react-native-firebase/firestore';
 import { school } from '../../Assets/Constants';
 import { useSelector } from 'react-redux';
 
-interface Data {
+export interface Data {
   // Define the structure of your data
   id: string;
-  // Add more properties as needed
-  // For example: name: string;
+  school: string
+  description: string
+  course: any,
+  _course: any
 }
 
 
@@ -18,7 +20,7 @@ export const loginauth = async(email: string, password: string, navigation: any)
         
         const user = firebase.auth().currentUser
         if(user?.emailVerified) {
-          if (user.displayName?.length === 0) {
+          if (user.displayName === null) {
             navigation.navigate('Signup' as never)
           } else {
             navigation.navigate('Bottomtabs' as never)
@@ -55,7 +57,8 @@ export const loginauth = async(email: string, password: string, navigation: any)
 
     try {
       user?.updateProfile({
-        displayName: firstname + " " + lastname
+        displayName: firstname + " " + lastname,
+        // photoURL: 'yesss'
       })
       firestore()
       .collection('Users')
@@ -132,3 +135,23 @@ export const loginauth = async(email: string, password: string, navigation: any)
         console.log('Bottomtabs');
       });
   };
+
+  export const getAllCourse = async (parameter: string): Promise<Data[]> => {
+    try {
+      const collectionRef = firestore().collection('realcourse');
+      const querySnapshot = await collectionRef.where('school', '==', parameter).get();
+  
+      const data: Data[] = [];
+      querySnapshot.forEach((documentSnapshot) => {
+        const docData = documentSnapshot.data() as Data;
+        data.push(docData);
+      });
+  
+      // console.log('Retrieved data:', data);
+      return data;
+    } catch (error) {
+      console.log('Error retrieving data:', error);
+      return [];
+    }
+  };
+

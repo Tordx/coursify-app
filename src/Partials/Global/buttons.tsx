@@ -65,7 +65,8 @@ export const LoginButton = (props: Props) => {
     android_ripple = {{
       borderless: false,
       radius: 125,
-      color: backgroundmode ? theme.light : theme.dark
+      color:'white'
+      // color: backgroundmode ? theme.light : theme.dark
     }}
     onPress={props.onPress}
     >
