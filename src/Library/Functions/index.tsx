@@ -1,6 +1,7 @@
 // own generated functions
 
 import { Linking } from "react-native";
+import { setscore } from "../Redux-actions/scoreslice";
 
 export const passwordgen = () => {
 
@@ -28,3 +29,32 @@ export const openEmailApp = () => {
       })
       .catch((error) => console.log(error));
   };
+
+  export const calculateAssessment = (selectedAnswers: string[], dispatch: any) => {
+
+    const countObject: { [key: string]: number } = {};
+
+    selectedAnswers.forEach((str: string) => {
+      if (countObject[str]) {
+        countObject[str] += 1;
+      } else {
+        countObject[str] = 1;
+      }
+    });
+
+    delete countObject['undefined'];
+    const countArray = Object.entries(countObject);
+
+    countArray.sort((a, b) => b[1] - a[1]);
+  
+    const highestObjects = countArray
+    .filter(([key, value]) => value !== undefined)
+    .slice(0, 2);
+    
+  
+    console.log(highestObjects);
+    console.log(countObject);
+    dispatch(setscore(highestObjects))
+
+    
+  }
