@@ -3,6 +3,9 @@ import React from 'react'
 import { styles } from '../../Assets/Styles'
 import { errors, mode, theme } from '../../Assets/Colors'
 import { useNavigation } from '@react-navigation/native'
+import { useDispatch } from 'react-redux'
+import { setschooling } from '../../Library/Redux-actions/schoolingslice'
+import { school } from '../../Assets/Constants'
 
 type Props = {}
 
@@ -16,7 +19,7 @@ const Assessment = (props: Props) => {
      <Text style = {styles.assessmenttext}>
       Ready to take the Assessment?
      </Text>
-     <Pressable style = {styles.getstarted} onPress={() => navigation.navigate('Questionaires' as never)}>
+     <Pressable style = {styles.getstarted} onPress={() => {navigation.navigate('Questionaires' as never)}}>
         <Text style = {styles.alertmodaltext}>GET STARTED</Text>
      </Pressable>
     </View>
