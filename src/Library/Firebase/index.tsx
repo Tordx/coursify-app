@@ -1,7 +1,7 @@
 import auth, { firebase } from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 
-interface Data {
+export interface Data {
   // Define the structure of your data
   id: string;
   // Add more properties as needed

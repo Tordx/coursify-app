@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, FlatList } from 'react-native';
 import { styles } from '../../Assets/Styles';
-import { getAllData } from '../../Library/Firebase';
+import { getAllData , Data } from '../../Library/Firebase';
 import { useEffect } from 'react';
 
 
@@ -17,19 +17,18 @@ interface Item {
 const Home = (props: Props) => {
 
   useEffect(() => {
-  
-    getAllData
-    console.log('====================================getAllData');
-    console.log(getAllData);
-    console.log('====================================getAllData');
-   
-  }, [])
+    const fetchData = async () => {
+      try {
+        const data: Data[] = await getAllData();
+        // Use the retrieved data as needed
+        console.log('Data:', data);
+      } catch (error) {
+        console.log('Error fetching data:', error);
+      }
+    };
 
-  const [data, setData] = useState<Item[]>([
-    { id: '1', title: 'Item 1' },
-    { id: '2', title: 'Item 2' },
-    { id: '3', title: 'Item 3' },
-  ]);
+    fetchData();
+  }, []);
 
   const renderItem = ({ item }: { item: Item }) => (
     <View style={styles.passcodetitle}>
