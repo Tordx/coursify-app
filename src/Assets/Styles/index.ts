@@ -253,11 +253,11 @@ export const styles = StyleSheet.create({
         flexDirection: "row",
         alignItems: "center",
         justifyContent: 'center',
-        margin: 5
+        margin: 10
     },
     radioButton: {
-        height: 20,
-        width: 20,
+        height: 25,
+        width: 25,
         backgroundColor: "#F8F8F8",
         borderRadius: 10,
         borderWidth: 1,
@@ -266,10 +266,10 @@ export const styles = StyleSheet.create({
         justifyContent: "center"
     },
     radioButtonIcon: {
-        height: 14,
-        width: 14,
-        borderRadius: 7,
-        backgroundColor: "#98CFB6"
+        height: 20,
+        width: 20,
+        borderRadius: 8,
+        backgroundColor: errors.W001
     },
     radioButtonText: {
         fontSize: 16,

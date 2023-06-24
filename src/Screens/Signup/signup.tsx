@@ -9,7 +9,7 @@ import { black, mode, theme, white, success } from '../../Assets/Colors'
 import { LoginButton, TopExit } from '../../Partials/Global/buttons'
 import { useFocusEffect, useNavigation } from '@react-navigation/native'
 import { openEmailApp } from '../../Library/Functions'
-import { strand } from '../../Assets/Constants'
+import { genders, strand } from '../../Assets/Constants'
 import { info } from '../../Library/Firebase'
 
 
@@ -23,14 +23,10 @@ const Signup = (props: Props) => {
   const [vermodal, setvermodal] = useState(false)
   const [alert, setalert] = useState(false);
   const [success, setsuccess] = useState(false);
-  const [code, setcode] = useState('');
   const [title, settitle] = useState('')
   const appState = useRef(AppState.currentState);
   const [firstname, setfirstname] = useState('');
   const [lastname, setlastname] = useState('');
-  const [city, setcity] = useState('');
-  const [province, setprovince] = useState('');
-  const [phonenumber, setphonenumber] = useState('');
   const [gender, setgender] = useState('');
   const [strands, setStrands] = useState('');
   const navigation = useNavigation();
@@ -65,28 +61,28 @@ const Signup = (props: Props) => {
     };
   }, []);
 
-  // useEffect(() => {
-  //   const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
-  //     setmodal(true)
-  //     if (user) {
-  //       user.reload().then(() => {
-  //         setTimeout(() => {
-  //           if (user.emailVerified) {
-  //             console.log('verified');
-  //             setmodal(false);
-  //             settitle('Email Successfully Verified')
-  //             setsuccess(true)
-  //           } else {
-  //             setvermodal(true)
-  //             setmodal(false)
-  //           }
-  //         }, 2000);
-  //       });
-  //     }
-  //   });
+  useEffect(() => {
+    const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
+      setmodal(true)
+      if (user) {
+        user.reload().then(() => {
+          setTimeout(() => {
+            if (user.emailVerified) {
+              console.log('verified');
+              setmodal(false);
+              settitle('Email Successfully Verified')
+              setsuccess(true)
+            } else {
+              setvermodal(true)
+              setmodal(false)
+            }
+          }, 2000);
+        });
+      }
+    });
 
-  //   return () => unsubscribe();
-  // }, []);
+    return () => unsubscribe();
+  }, []);
 
   useFocusEffect(() => {
   if(time < 31) {
@@ -137,7 +133,7 @@ const timecount = (count: number) => {
 
   return (
     <View style = {styles.container}>
-      <Text style = {styles.vermodaltitle}>ADDITIONAL INFORMATION</Text>
+      <Text style = {styles.vermodaltitle}>SET UP YOUR ACCOUNT</Text>
       <Text style = {[styles.signupbutton, {justifyContent: 'center', textAlign: 'center'}]}>Amazing! you have successfully verified your email, now finish up the sign up process to use the app!</Text>
      <Input
         placeholderTextColor= {mode ? white.W001 : black.B005}
@@ -153,38 +149,40 @@ const timecount = (count: number) => {
         value = {lastname}
         onChangeText={(value) => setlastname(value)}
       />
-      <Input
-        placeholderTextColor= {mode ? white.W001 : black.B005}
-        name = 'phone-outline'
-        placeholder= "Phone Number"
-        value = {phonenumber}
-        onChangeText={(value) => setphonenumber(value)}
-      />
-      <Input
-        placeholderTextColor= {mode ? white.W001 : black.B005}
+      
+      <Dropdown
         name = 'checkbox-blank-circle-outline'
-        placeholder= "Gender"
-        value = {gender}
-        onChangeText={(value) => setgender(value)}
+        defaultButtonText = 'Gender'
+        data={genders}
+        onSelect={(selectedItem, index) => {
+          console.log(selectedItem, index)
+          setgender(selectedItem)
+        }}
+        buttonTextAfterSelection={(selectedItem, index) => {
+          return selectedItem
+        }}
+        rowTextForSelection={(item, index) => {
+          return item
+        }}
       />
       <Dropdown
-      name = 'school-outline'
-      defaultButtonText = 'Strand'
-      data={strand}
-      onSelect={(selectedItem, index) => {
-        console.log(selectedItem, index)
-        setStrands(selectedItem)
-      }}
-      buttonTextAfterSelection={(selectedItem, index) => {
-        return selectedItem
-      }}
-      rowTextForSelection={(item, index) => {
-        return item
-      }}
+        name = 'school-outline'
+        defaultButtonText = 'Strand'
+        data={strand}
+        onSelect={(selectedItem, index) => {
+          console.log(selectedItem, index)
+          setStrands(selectedItem)
+        }}
+        buttonTextAfterSelection={(selectedItem, index) => {
+          return selectedItem
+        }}
+        rowTextForSelection={(item, index) => {
+          return item
+        }}
       />
       <LoginButton
         title='SIGN UP'
-        onPress={() => info(firstname , lastname , phonenumber , gender,  strands ,  navigation )}
+        onPress={() => info(firstname , lastname, gender,  strands ,  navigation )}
       />
       <LoadingModal
         title='Checking email verification status'
