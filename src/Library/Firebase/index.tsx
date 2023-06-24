@@ -1,5 +1,6 @@
 import auth, { firebase } from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
+import { school } from '../../Assets/Constants';
 
 interface Data {
   // Define the structure of your data
@@ -16,7 +17,7 @@ export const loginauth = async(email: string, password: string, navigation: any)
         
         const user = firebase.auth().currentUser
         if(user?.emailVerified) {
-          if (user.displayName) {
+          if (user.displayName?.length === 0) {
             navigation.navigate('Signup' as never)
           } else {
             navigation.navigate('Bottomtabs' as never)
@@ -48,47 +49,29 @@ export const loginauth = async(email: string, password: string, navigation: any)
         throw error;
       }
   };
-  export const info = async(firstname: string, lastname: string, phonenumber: string , gender: string , strands: string ,  navigation: any) => {
+  export const info = async(firstname: string, lastname: string, gender: string , strands: string ,  navigation: any) => {
     const user = firebase.auth().currentUser
-    const useruid = firebase.auth().currentUser?.uid
-    console.log('====================================');
-    console.log(user);
-    console.log('====================================');
 
-    // if (user) {
-    //   await user.updateProfile({
-    //     displayName: firstname,
-    //     // photoURL: user.photoURL,
-    //   });
-
-    //   // Refresh the user to reflect the updated changes
-    //   await user.reload();
-    //   console.log('====================================');
-    //   console.log(user);
-    //   console.log('====================================');
-    // }
     try {
+      user?.updateProfile({
+        displayName: firstname + " " + lastname
+      })
       firestore()
       .collection('Users')
-      .doc(useruid)
+      .doc(user?.uid)
       .set({
-        uid: useruid,
+        uid: user?.uid,
         firstname: firstname,
         lastname: lastname,
-        phonenumber: phonenumber,
         gender: gender,
         strands: strands,
       })
       .then(() => {
-        console.log('User added!');
         navigation.navigate('Bottomtabs' as never)
       });
     } catch (error: any) {
         throw error;
       }
-      console.log('====================================');
-      console.log('end of info');
-      console.log('====================================');
   };
 
   export const onDelete = async() => {
@@ -120,4 +103,21 @@ export const loginauth = async(email: string, password: string, navigation: any)
     }
   };
   
-  
+  export const createAssessment = async(navigation: any) => {
+    const serverTimestamp = firestore.FieldValue.serverTimestamp();
+    const uid = firestore().collection('assessment').doc().id
+    const user = firebase.auth().currentUser
+    firestore()
+      .collection('assessment')
+      .doc(user?.uid)
+      .set({
+        uid: uid,
+        userid: user?.uid,
+        Time: serverTimestamp,
+        displayName: user?.displayName,
+        totalscores: 0,
+        schools: school,
+      }).then(() => {
+        navigation.navigate('Questionaires' as never)
+      })
+  }
