@@ -1,6 +1,7 @@
 import auth, { firebase } from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import { school } from '../../Assets/Constants';
+import { useSelector } from 'react-redux';
 
 interface Data {
   // Define the structure of your data
@@ -103,21 +104,31 @@ export const loginauth = async(email: string, password: string, navigation: any)
     }
   };
   
-  export const createAssessment = async(navigation: any) => {
+  export const createAssessment = async (navigation: any, score: any) => {
     const serverTimestamp = firestore.FieldValue.serverTimestamp();
-    const uid = firestore().collection('assessment').doc().id
-    const user = firebase.auth().currentUser
+    const uid = firestore().collection('assessment').doc().id;
+    const user = firebase.auth().currentUser;
+
+    const keys = Object.keys(score);
+    const firstKey = keys[0];
+    const secondKey = keys[1];
+
     firestore()
       .collection('assessment')
-      .doc(user?.uid)
+      .doc(uid)
       .set({
         uid: uid,
         userid: user?.uid,
         Time: serverTimestamp,
         displayName: user?.displayName,
         totalscores: 0,
-        schools: school,
-      }).then(() => {
-        navigation.navigate('Questionaires' as never)
+        schools: {
+          [firstKey]: score[firstKey],
+          [secondKey]: score[secondKey],
+        },
       })
-  }
+      .then(() => {
+        navigation.navigate('Bottomtabs' as never);
+        console.log('Bottomtabs');
+      });
+  };
