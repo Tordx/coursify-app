@@ -131,8 +131,10 @@ export const Questions = (props: QuestionsProps) => {
 
 
   return (
-    <>
-    <Text style = {[styles.alertmodaltext, { width: '95%', textAlign: 'center', marginVertical: 10,}]}>{props.question}</Text>
+    <View style = {{justifyContent: 'center', alignItems: 'center', width: '100%'}}>
+    <View style = {{justifyContent: 'flex-start', alignItems: 'flex-start', width: '95%'}}>
+    <Text style = {[styles.alertmodaltext, {textAlign: 'left', marginVertical: 10, marginHorizontal: 10}]}>{props.question}</Text>
+    </View>
     <View style = {{
       flexDirection: 'row',
       width: '100%',
@@ -181,6 +183,6 @@ export const Questions = (props: QuestionsProps) => {
       
       />
     </View>
-    </>
+    </View>
   )
 }
