@@ -7,17 +7,26 @@ import Results from '../Screens/Home/Results'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { black, errors, mode, theme, white } from '../Assets/Colors'
 import { styles } from '../Assets/Styles'
+import auth, { firebase } from '@react-native-firebase/auth';
 
 type Props = {}
 
-const name = 'Juan'
+// const name = 'Juan'
 
 const Bottomtabs = (props: Props) => {
+
+  const user = firebase.auth().currentUser
+  const name  = user?.displayName
+  console.log('====================================user');
+  console.log(user?.displayName);
+  console.log('====================================user');
+
+
   return (
    <>
-   <View style = {{height: 75, width: '100%', backgroundColor: mode ? theme.dark : theme.light, justifyContent: 'center', alignItems: 'center',}}>
+   <View style = {{height: 75, width: '100%', backgroundColor:'#248BB8', justifyContent: 'center', alignItems: 'center',}}>
     <View style = {{width: '95%', justifyContent: 'flex-start', alignItems: 'flex-start', flexDirection: 'row'}}>
-      <Text style = {styles.headername}>Hello {name}!</Text>
+      <Text style = {styles.headername}>Hello {name}! </Text>
       <View style = {styles.headerprofilecontainer}>
       <Image source={require('../Assets/Images/12.jpg')} style = {styles.headerprofile}/>
       </View>

@@ -10,6 +10,8 @@ import Signup from '../Screens/Signup/signup'
 import Bottomtabs from './bottomtabs'
 import Reset from '../Screens/Initial/reset'
 import Questionaires from '../Screens/contents/questionaires'
+import Courselist from '../Screens/courseinfo/Courselist'
+import CourseOverView from '../Screens/courseinfo/CourseOverview'
 
 type Props = {}
 
@@ -73,6 +75,22 @@ const Stacks = (props: Props) => {
         options={{
           headerShown: false,
           cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+        }}
+      />
+           <Stack.Screen
+        name = 'Courselist'
+        component = {Courselist}
+        options={{
+          headerShown: false,
+          cardStyleInterpolator: CardStyleInterpolators.forFadeFromBottomAndroid,
+        }}
+      />
+                <Stack.Screen
+        name = 'CourseOverview'
+        component = {CourseOverView}
+        options={{
+          headerShown: false,
+          cardStyleInterpolator: CardStyleInterpolators.forFadeFromBottomAndroid,
         }}
       />
     </Stack.Navigator>

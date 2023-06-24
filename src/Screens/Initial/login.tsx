@@ -73,14 +73,16 @@ const Login = () => {
       <Text style = {styles.appname}> {appname.toUpperCase()} </Text>
       <Input
         name = 'email-outline'
-        placeholderTextColor={mode ? white.W001 : black.B005}
+        placeholderTextColor={'white'}
+        // placeholderTextColor={mode ? white.W001 : black.B005}
         placeholder='Email Address'
         value={email}
         onChangeText={(value) => setemail(value)}
       />
        <Input
         name = 'lock-outline'
-        placeholderTextColor={mode ? white.W001 : black.B005}
+        placeholderTextColor={'white'}
+        // placeholderTextColor={mode ? white.W001 : black.B005}
         placeholder='Password'
         secureTextEntry = {checksecu}
         value = {password}
