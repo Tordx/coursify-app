@@ -99,11 +99,11 @@ export const TopExit = (props: Props) => {
 
 export const Radio = (props: Props) => {
   return (
-    <View style={styles.radioButtonContainer}>
-   <Pressable onPress={props.onPress} style={styles.radioButton}>
+    <Pressable style={styles.radioButtonContainer}  onPress={props.onPress} >
+   <View style={styles.radioButton}>
     {props.pressed ? <View style={styles.radioButtonIcon}/> : null }
-   </Pressable>
+   </View>
      <Text style={styles.radioButtonText}>{props.tag}</Text>
- </View>
+ </Pressable>
   )
 }
