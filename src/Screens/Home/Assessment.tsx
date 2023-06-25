@@ -8,52 +8,61 @@ import { setschooling } from '../../Library/Redux-actions/schoolingslice'
 import { school } from '../../Assets/Constants'
 import firestore from '@react-native-firebase/firestore'
 import { firebase } from '@react-native-firebase/auth'
+import { getAllData } from '../../Library/Firebase'
+import { LoadingModal } from '../../Partials/Global/modals'
 type Props = {}
 
-interface Collection {
-  Time: object;
-  displayName: string;
-  schools: object;
-  totalscores: number;
-  userid: string;
-}
+interface Data{
 
+}
 const Assessment = (props: Props) => {
 
   const navigation = useNavigation()
-  const [checkdata, setcheckdata] = useState(false);
+  const [loading, setloading] = useState(false)
+  const [data, setdata] = useState<Data[]>([]);
   const id = firebase.auth().currentUser
-  const [collections, setCollections] = useState<Collection[]>([]);
-
-  const getdata = async() => {
-    const data = await firestore().collection('assessment').where('userid', '==', id?.uid).get()
-
-    const collections: Collection[] = [];
-    data.forEach((doc: any) => {
-      const collection = doc.data();
-      collections.push(collection);
-    });
-    setCollections(collections)
-    
-  }
 
   useEffect(() => {
-    getdata()
-    if (collections) {
-      setcheckdata(true)
-    } else {
-      setcheckdata(false)
-    }
-    
-  },[])
+    const fetchData = async () => {
+      try {
+        setloading(true)
+        const retrievedData: Data[] = await getAllData('assessment');
+        setdata(retrievedData);
+        setloading(false)
+      } catch (error) {
+        console.log('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  
   return (
     <View style = {styles.container}>
-     {checkdata ?  <><Text> {collections[0]?.userid} </Text></> :  <><Text style = {styles.assessmenttext}>
+     {data ?  <>
+     <Text style = {styles.assessmenttext}>You already took the assessment
+     </Text>
+     <View style = {{width: '90%', paddingHorizontal: 15, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center',}}>
+     <Pressable style = {styles.getstarted} onPress={() => { navigation.navigate('Result' as never)}}>
+        <Text style = {[styles.alertmodaltext, {fontFamily: 'monthe'}]}>VIEW RESULT</Text>
+     </Pressable>
+     <Pressable style = {styles.getstarted} onPress={() => {navigation.navigate('Questionaires' as never)}}>
+        <Text style = {[styles.alertmodaltext, {fontFamily: 'monthe'}]}>RETAKE</Text>
+     </Pressable>
+     </View>
+     </>
+     :  
+     <><Text style = {styles.assessmenttext}>
       Ready to take the Assessment?
      </Text>
      <Pressable style = {styles.getstarted} onPress={() => {navigation.navigate('Questionaires' as never)}}>
-        <Text style = {styles.alertmodaltext}>GET STARTED</Text>
+        <Text style = {[styles.alertmodaltext, {fontFamily: 'monthe'}]}>GET STARTED</Text>
      </Pressable></>}
+     <LoadingModal
+        visible = {loading}
+        title = 'Checking Assessment status'
+     />
     </View>
   )
 }
