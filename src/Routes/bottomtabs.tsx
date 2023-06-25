@@ -17,14 +17,11 @@ const Bottomtabs = (props: Props) => {
 
   const user = firebase.auth().currentUser
   const name  = user?.displayName
-  console.log('====================================user');
-  console.log(user?.displayName);
-  console.log('====================================user');
 
 
   return (
    <>
-   <View style = {{height: 75, width: '100%', backgroundColor:'#248BB8', justifyContent: 'center', alignItems: 'center',}}>
+   <View style = {{height: 75, width: '100%', backgroundColor: theme.dark, justifyContent: 'center', alignItems: 'center',}}>
     <View style = {{width: '95%', justifyContent: 'flex-start', alignItems: 'flex-start', flexDirection: 'row'}}>
       <Text style = {styles.headername}>Hello {name}! </Text>
       <View style = {styles.headerprofilecontainer}>
@@ -37,7 +34,7 @@ const Bottomtabs = (props: Props) => {
    screenOptions={{
     headerShown: false,
     tabBarShowLabel: false,
-    tabBarStyle: { backgroundColor:  mode ? theme.dark : theme.light, borderColor: theme.accenta, height: 70 },
+    tabBarStyle: { backgroundColor:theme.dark, borderColor: theme.accenta, height: 70 },
     tabBarIconStyle: { height: 25, justifyContent: 'center', alignItems: 'center',},
    }}
    >
@@ -50,7 +47,7 @@ const Bottomtabs = (props: Props) => {
                 <View style = {styles.tabicon}>
                   <Icon
                     name = {focused ? 'book-open-page-variant' : 'book-open-page-variant-outline'}
-                    color = {focused ? mode ? errors.main : theme.accenta : mode ? white.W003 : black.B005}
+                    color = {focused ? errors.main : theme.accenta}
                     size = {focused ? 35 : 30}
                   />
                 </View>
@@ -65,7 +62,7 @@ const Bottomtabs = (props: Props) => {
                 <View style = {styles.tabicon}>
                   <Icon
                     name = {focused ? 'notebook-edit' : 'notebook-edit-outline'}
-                    color = {focused ? mode ? errors.main : theme.accenta : mode ? white.W003 : black.B005}
+                    color = {focused ? errors.main : theme.accenta}
                     size = {focused ? 35 : 30}
                   />
                 </View>
@@ -80,7 +77,7 @@ const Bottomtabs = (props: Props) => {
                 <View style = {styles.tabicon}>
                   <Icon
                     name = {focused ? 'folder-information' : 'folder-information-outline'}
-                    color = {focused ? mode ? errors.main : theme.accenta : mode ? white.W003 : black.B005}
+                    color = {focused ? errors.main : theme.accenta}
                     size = {focused ? 35 : 30}
                   />
                 </View>
