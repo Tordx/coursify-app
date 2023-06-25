@@ -84,7 +84,7 @@ const Results = (props: Props) => {
     <View style = {styles.container}>
         <View style = {{width: '100%', justifyContent: 'center', alignItems: 'center', borderBottomWidth: 1, borderColor: theme.secondary}}>
       <Text style = {[styles.assessmenttext, {color: errors.main}]}>ASSESSMENT RESULTS</Text>
-      <Text style = {styles.descriptiontext}>Here are the top 2 choice of course to enroll to based on the result of your assessment</Text>
+      <Text style = {styles.descriptiontext}>Base on the result of your assessment, Here are the top 2 choice of course to enroll to.</Text>
     </View>
       <FlatList
       style = {{width: '100%'}}
