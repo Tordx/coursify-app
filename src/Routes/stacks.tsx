@@ -91,7 +91,7 @@ const Stacks = (props: Props) => {
         component = {CourseOverView}
         options={{
           headerShown: false,
-          cardStyleInterpolator: CardStyleInterpolators.forFadeFromBottomAndroid,
+          cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
         }}
       />
                     <Stack.Screen
