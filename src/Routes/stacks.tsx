@@ -10,8 +10,8 @@ import Signup from '../Screens/Signup/signup'
 import Bottomtabs from './bottomtabs'
 import Reset from '../Screens/Initial/reset'
 import Questionaires from '../Screens/contents/questionaires'
-import Courselist from '../Screens/courseinfo/Courselist'
-import CourseOverView from '../Screens/courseinfo/CourseOverview'
+import Courselist from '../Screens/contents/Courselist'
+import CourseOverView from '../Screens/contents/CourseOverview'
 
 type Props = {}
 
