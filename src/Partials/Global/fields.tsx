@@ -14,7 +14,7 @@ type Props = {
     placeholder?: string,
     placeholderTextColor: string,
     name?: string,
-    secureTextEntry?: boolean,
+    secureTextEntry: boolean,
     secu?: string,
     onPress?: (value: any) => void,
     autoComplete?: string,
@@ -91,13 +91,13 @@ export const Dropdown = (props: DropProps) => {
       buttonTextAfterSelection={props.buttonTextAfterSelection}
       rowTextForSelection={props.rowTextForSelection}
       buttonStyle = {[styles.logininputcontainer, {backgroundColor: '#00000000', justifyContent: 'center', height: 35}]}
-      buttonTextStyle = {[styles.logininput, {alignSelf: 'flex-start', textAlign: 'left',color: mode ? white.W001 : black.B005, fontSize: 18}]}
+      buttonTextStyle = {[styles.logininput, {alignSelf: 'flex-start', textAlign: 'left',color: white.W001, fontSize: 18}]}
       renderDropdownIcon = {() => (
         <View style = {{justifyContent: 'center', alignItems: 'center',}}>
             <Icon
             name = {props.name || 'blank'}
             size = {25}
-            color = {mode ? theme.accenta : theme.accentb}
+            color = {theme.accenta }
             style = {{top: -5, left: -5}}
           />
           </View>
