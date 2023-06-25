@@ -291,7 +291,7 @@ export const styles = StyleSheet.create({
     descriptiontext: {
         width: '90%', 
         fontFamily: 'montel', 
-        fontSize: 16, 
+        fontSize: 18, 
         paddingBottom: 10, 
         color: white.main
     },
@@ -317,7 +317,7 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         alignSelf: 'center',
-        width: '90%',
+        width: '95%',
         height: 200,
         marginVertical: 10,
     }
