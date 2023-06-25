@@ -4,6 +4,8 @@ import { styles } from '../../Assets/Styles'
 import { calcuplus } from '../../Assets/Constants'
 import Login from './login'
 import { useNavigation } from '@react-navigation/native'
+import AsyncStorage from '@react-native-async-storage/async-storage'
+import { firebase } from '@react-native-firebase/auth'
 
 type Props = {
 }
@@ -14,9 +16,17 @@ const Splash = (props: Props) => {
 
   useEffect(() => {
 
-    setTimeout(() => {
+    setTimeout(async() => {
+     const authCredentials =  await AsyncStorage.getItem('login')
+     if (authCredentials !== null) {
+      const loginCredentials = JSON.parse(authCredentials);
+      const email = loginCredentials.email;
+      const password = loginCredentials.password;
+      await firebase.auth().signInWithEmailAndPassword(email, password).then(() => navigation.navigate('Bottomtabs' as never))
+     } else {
       navigation.navigate('Login' as never)
-    }, 1500);
+     }
+    }, 500);
 
   },[])
 
