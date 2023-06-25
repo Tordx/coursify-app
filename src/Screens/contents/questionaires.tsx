@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setschooling } from '../../Library/Redux-actions/schoolingslice';
 import { calculateAssessment } from '../../Library/Functions';
 import { createAssessment } from '../../Library/Firebase';
+import { AlertModal, LoadingModal } from '../../Partials/Global/modals';
 
 type Props = {};
 
@@ -27,7 +28,7 @@ interface Scores {
 
 const Questionaires = (props: Props) => {
   const [selectedAnswers, setSelectedAnswers] = useState<string[]>([]);
- 
+  const [modal, setmodal] = useState(false)
   const {score} = useSelector((action: Scores) => action._score)
 
   const handleSubmit = async() => {
@@ -38,8 +39,9 @@ const Questionaires = (props: Props) => {
       console.log('pressed');
       if (score && Object.keys(score).length > 0) {
         await createAssessment(navigation, score);
+      } else {
+        setmodal(true)
       }
-      console.log('pressed');
     } catch (error) {
       console.log(error);
     }
@@ -74,7 +76,8 @@ const Questionaires = (props: Props) => {
           Let us know what are your interests, and we'll let you know what courses fit you
         </Text>
       </View>
-        {scaleQuestions.map((question: Question, index: number) => (
+      {scaleQuestions ? (
+        scaleQuestions.map((question: Question, index: number) => (
           <View key={question.key} style={{ justifyContent: 'center', alignItems: 'center', width: '100%' }}>
             <Questions
               key={`${index}`}
@@ -82,15 +85,23 @@ const Questionaires = (props: Props) => {
               question={question.text}
             />
           </View>
-        ))}
-        
+        ))
+      ) : (
+        <LoadingModal visible={true} />
+      )}
+              
 
         <Pressable style = {[styles.getstarted, {marginBottom: 30}]} onPress={handleSubmit}>
           <Text style = {[styles.alertmodaltext, {fontFamily: 'monthe'}]}>SUBMIT</Text>
         </Pressable>
         </View>
       </ScrollView>
-
+      <AlertModal
+        visible = {modal}
+        title = 'The Assessment is empty'
+        onPress={() => setmodal(false)}
+        onRequestClose={() => setmodal(false)}
+      />
       <TopExit onPress={() => navigation.goBack()} />
     </View>
   );
