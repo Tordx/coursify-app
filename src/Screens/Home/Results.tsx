@@ -51,10 +51,8 @@ const Results = (props: Props) => {
 
   const handleItemClick = async (item: string) => {
     // Execute your desired function or code when an item is clicked
-    console.log('====================================item');
     console.log(item);
     dispatch(setschooltitle(item))
-    console.log('====================================item');
     navigation.navigate('AssessmentCourseOverview' as never)
 
   };
@@ -62,25 +60,22 @@ const Results = (props: Props) => {
   const renderedItem = ({item}: {item: Data}) => {
     return(
       <>
-      {data ? 
-      <View style = {{justifyContent: 'center', alignItems: 'center', height: 200}}>
+      
               {
               Object.entries(data[0].schools).map(([key, [string, number]], index) => {
                 const keyString = key;
                 const numberValue = string;
                 return (
-                  <TouchableOpacity onPress={() => {handleItemClick(numberValue)}}>
+                  <Pressable style = {{justifyContent: 'center', alignItems: 'center', width: '100%'}} onPress={() => handleItemClick(numberValue)}>
                   <Text
                     key={index}
                     style={styles.resulttext}
                   >{numberValue}
                   </Text>
-                  </TouchableOpacity>
+                  </Pressable>
                 );
               })}
-      </View>
-      : <View><ActivityIndicator size={100} color={white.W001} /></View>
-      }
+    
       </>
 
     )
@@ -92,7 +87,7 @@ const Results = (props: Props) => {
       <Text style = {styles.descriptiontext}>Here are the top 2 choice of course to enroll to based on the result of your assessment</Text>
     </View>
       <FlatList
-      style = {{}}
+      style = {{width: '100%'}}
       data = {data}
       renderItem={renderedItem}
       keyExtractor={(item) => item.uid}

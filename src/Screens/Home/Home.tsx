@@ -58,7 +58,7 @@ const Home = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={{ fontSize: 50, fontFamily: 'monthe', textAlign: 'center' , margin: 10 , color: errors.main }}>SCHOOL LIST</Text>
+      <Text style={{ fontSize: 50, fontFamily: 'monthe', textAlign: 'center' , marginBottom: 10 , color: errors.main }}>SCHOOL LIST</Text>
       <FlatList
       style = {{width: '100%', height: '100%'}}
         data={data}
