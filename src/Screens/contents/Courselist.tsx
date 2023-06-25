@@ -29,13 +29,6 @@ const Courselist = () => {
     navigation.navigate('CourseOverview' as never)
 
   };
-
-  // const renderItem = ({ item }: { item: Data }) =>  {
-    
-  //   const imagesource = imageset[item.course]
-  //     return (
- 
-  //   )};
     
 
 const renderItem = ({ item }: { item: Data }) => {
@@ -54,7 +47,7 @@ const renderItem = ({ item }: { item: Data }) => {
   
   return (
     <View style={styles.container}>
-    <Text style={{ fontSize: 50, fontFamily: 'monthe', textAlign: 'center' , margin: 10 , color: errors.W001 }}>SCHOOLS</Text>
+    <Text style={{ fontSize: 50, fontFamily: 'monthe', textAlign: 'center' , margin: 15 , color: errors.main }}>COURSE LIST</Text>
     <Text style={{ fontSize: 20, fontFamily: 'monthe', textAlign: 'center' , margin: 10 , color: 'white' }}>{schooltitle.school}</Text>
     <FlatList
     style = {{width: '100%', height: '100%'}}
