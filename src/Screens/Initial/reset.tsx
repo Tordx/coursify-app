@@ -23,10 +23,11 @@ const Reset = (props: Props) => {
           />
         <Text style = {[styles.signupbutton, {textAlign: 'center', fontSize: 15}]} >Please enter your registered email address, a reset password link we'll be sent to you via email</Text>
         <Input
-        placeholderTextColor= {mode ? white.W001 : black.B005}
+        placeholderTextColor= {white.W001}
         name = 'email-search-outline'
         placeholder= "Email address"
         value = {email}
+        secureTextEntry = {false}
         onChangeText={(value) => setemail(value)}
         />
         <LoginButton
