@@ -6,12 +6,19 @@ import { useSelector } from 'react-redux';
 export interface Data {
   // Define the structure of your data
   id: string;
-  school: string
-  description: string
+  displayName: string,
+  userid: string,
+  school: string,
+  schools: string,
+  description: string,
   course: any,
-  _course: any
+  _course: any,
+  Time: Date,
+  firstname: string,
+  lastname: string, 
+  gender: string,
+  strands: string,
 }
-
 
 export const loginauth = async(email: string, password: string, navigation: any)  => {
     try {
@@ -88,9 +95,9 @@ export const loginauth = async(email: string, password: string, navigation: any)
 
   }
 
- export const getAllData = async (): Promise<Data[]> => {
+ export const getAllData = async (toretrieve: string): Promise<Data[]> => {
     try {
-      const collectionRef = firestore().collection('course');
+      const collectionRef = firestore().collection(toretrieve);
       const querySnapshot = await collectionRef.get();
   
       const data: Data[] = [];
@@ -136,10 +143,10 @@ export const loginauth = async(email: string, password: string, navigation: any)
       });
   };
 
-  export const getAllCourse = async (parameter: string): Promise<Data[]> => {
+  export const getSpecificData = async (datapull: string, dataparameter: string, parameter: string): Promise<Data[]> => {
     try {
-      const collectionRef = firestore().collection('realcourse');
-      const querySnapshot = await collectionRef.where('school', '==', parameter).get();
+      const collectionRef = firestore().collection(datapull);
+      const querySnapshot = await collectionRef.where(dataparameter, '==', parameter).get();
   
       const data: Data[] = [];
       querySnapshot.forEach((documentSnapshot) => {
