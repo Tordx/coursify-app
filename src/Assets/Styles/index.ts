@@ -298,9 +298,12 @@ export const styles = StyleSheet.create({
     resulttext: {
         fontFamily: 'monthe', 
         fontSize: 30, 
-        textAlign: 'left', 
-        margin: 10, 
-        color: white.main 
+        textAlign: 'center',
+        padding: 10,
+        width: '100%',
+        color: white.main,
+        borderBottomWidth: .5,
+        borderBottomColor: errors.main
     },
     imagecontainer: {
         justifyContent: 'center',
