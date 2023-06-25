@@ -99,7 +99,7 @@ const Stacks = (props: Props) => {
         component = {AssessmentCourseOverview}
         options={{
           headerShown: false,
-          cardStyleInterpolator: CardStyleInterpolators.forFadeFromBottomAndroid,
+          cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
         }}
       />
     </Stack.Navigator>
