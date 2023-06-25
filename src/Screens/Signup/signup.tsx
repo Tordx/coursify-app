@@ -136,18 +136,20 @@ const timecount = (count: number) => {
       <Text style = {styles.vermodaltitle}>SET UP YOUR ACCOUNT</Text>
       <Text style = {[styles.signupbutton, {justifyContent: 'center', textAlign: 'center'}]}>Amazing! you have successfully verified your email, now finish up the sign up process to use the app!</Text>
      <Input
-        placeholderTextColor= {mode ? white.W001 : black.B005}
+        placeholderTextColor= {white.W001}
         name = 'account-tie'
         placeholder= "First Name"
         value = {firstname}
         onChangeText={(value) => setfirstname(value)}
+        secureTextEntry = {false}
       />
      <Input
-        placeholderTextColor= {mode ? white.W001 : black.B005}
+        placeholderTextColor= {white.W001}
         name = 'account-tie-outline'
         placeholder= "Last Name"
         value = {lastname}
         onChangeText={(value) => setlastname(value)}
+        secureTextEntry = {false}
       />
       
       <Dropdown
@@ -204,8 +206,8 @@ const timecount = (count: number) => {
       />
       <Pressable onPress={() => {navigation.navigate('Verify' as never)}}>
         <Text style = {[styles.signupbutton, {textAlign: 'center', fontSize: 13}]}>By signing up you understand our 
-          <Text style = {{color: mode ? successstate.G006 : successstate.G002}}> Terms of use </Text> and
-          <Text style = {{color: mode ? successstate.G006 : successstate.G002}}> Conditions</Text>
+          <Text style = {{color:successstate.G006 }}> Terms of use </Text> and
+          <Text style = {{color:successstate.G006}}> Conditions</Text>
         </Text>
       </Pressable>
       <TopExit

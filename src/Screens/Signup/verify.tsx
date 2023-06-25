@@ -61,25 +61,28 @@ const Verify: React.FC =  () => {
       <Text style = {styles.appname}>Get Started</Text>
       <Text style = {styles.signuptag}>Set your email address, make sure it hasn't been used here before.</Text>
       <Input
-        placeholderTextColor= {mode ? white.W001 : black.B005}
+        placeholderTextColor= {white.W001}
         name = 'card-account-details-outline'
         placeholder= "Email Address"
         value = {email}
         onChangeText={(value) => setemail(value)}
+        secureTextEntry = {false}
       />
       <Input
-        placeholderTextColor= {mode ? white.W001 : black.B005}
+        placeholderTextColor= {white.W001}
         name = 'lock-outline'
         placeholder= "New Password"
         value = {password}
         onChangeText={(value) => setpassword(value)}
+        secureTextEntry = {false}
       />
       <Input
-        placeholderTextColor= {mode ? white.W001 : black.B005}
+        placeholderTextColor= {white.W001}
         name = 'lock-outline'
         placeholder= "Confirm New Password"
         value = {passconfirm}
         onChangeText={(value) => setpassconfirm(value)}
+        secureTextEntry = {false}
       />
       <LoginButton
         title='Continue'
@@ -87,8 +90,8 @@ const Verify: React.FC =  () => {
       />
       <Pressable onPress={() => {navigation.navigate('Verify' as never)}}>
         <Text style = {[styles.signupbutton, {textAlign: 'center', fontSize: 13}]}>By signing up you understand our 
-          <Text style = {{color: mode ? success.G006 : success.G002}}> Terms of use </Text> and
-          <Text style = {{color: mode ? success.G006 : success.G002}}> Conditions</Text>
+          <Text style = {{color:success.G006 }}> Terms of use </Text> and
+          <Text style = {{color:success.G006}}> Conditions</Text>
         </Text>
       </Pressable>
       <LoadingModal
