@@ -17,7 +17,7 @@ function App (){
   return (
     <Provider store  = {store}>
     <NavigationContainer>
-      <StatusBar backgroundColor={mode ? theme.dark : theme.light} barStyle={mode ? 'light-content' : 'dark-content'} />
+      <StatusBar backgroundColor={theme.dark} barStyle={'light-content'} />
       <Stacks/>
     </NavigationContainer>
     </Provider>
