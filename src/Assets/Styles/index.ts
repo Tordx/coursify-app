@@ -12,8 +12,7 @@ export const styles = StyleSheet.create({
         height: '100%',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#248BB8'
-        // backgroundColor: backgroundmode ? theme.dark : theme.light
+        backgroundColor: theme.dark 
     },
     passcodetitle: {
 
@@ -22,7 +21,7 @@ export const styles = StyleSheet.create({
         fontFamily: 'monthe',
         top: 20,
         left: 15,
-        color: backgroundmode ? white.W001 : black.B002
+        color:  white.W001
         
     },
     passcodekeys: {
@@ -39,7 +38,7 @@ export const styles = StyleSheet.create({
     passcodekeytext: {
 
         fontSize: 35,
-        color: backgroundmode ?  white.W001 : black.B002
+        color: white.W001
 
     },
     numpadcontainer: {
@@ -50,7 +49,7 @@ export const styles = StyleSheet.create({
         borderTopLeftRadius: 30,
         borderTopRightRadius: 30,
         elevation: 20,
-        backgroundColor: backgroundmode ? theme.dark : theme.light
+        backgroundColor: theme.dark,
         
     },
 
@@ -75,7 +74,7 @@ export const styles = StyleSheet.create({
         justifyContent: 'center', 
         alignItems: 'center',
         borderBottomWidth: 1,
-        borderBottomColor: mode ? theme.accenta : theme.accentb,
+        borderBottomColor: theme.accenta
         
     },
     
@@ -84,6 +83,7 @@ export const styles = StyleSheet.create({
         width: '90%',
         fontSize: 20,
         fontFamily: 'montel',
+        color: white.main
 
     },
     loginicon: {
@@ -103,14 +103,14 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         borderRadius: 10,
         elevation: 5,
-        backgroundColor: mode ? theme.accenta : theme.accentb,
+        backgroundColor: theme.accenta
     },
     loginbuttontitle: {
         paddingVertical: 15,
         paddingHorizontal: 100,
         fontSize: 25,
         fontFamily: 'monthe',
-        color: mode ? white.W003 : white.W003,
+        color: white.W003 
     },
     modalcontainer: {
         width: '100%',
@@ -131,12 +131,11 @@ export const styles = StyleSheet.create({
         borderRadius: 20,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: mode ? theme.dark : theme.light
+        backgroundColor: theme.dark
 
     },
     alertmodaltext: {
-        color: 'white',
-        // color: mode ? white.main : black.main,
+        color: white.main,
         fontSize: 20,
         fontFamily: 'montel'
     },
@@ -155,21 +154,21 @@ export const styles = StyleSheet.create({
     },
     signupbutton: {
     
-       color: mode? white.W003 : black.B004,
+       color:  white.W003,
        padding: 20,
        fontFamily: 'montel',
        fontSize: 15,
 
     },
     signuptag: {
-        color: mode? white.W003 : black.B001,
+        color: white.W003,
         fontFamily: 'montel',
         fontSize: 18,
         width: '80%',
         textAlign: 'center'
     },
     signupdisclosure: {
-        color: mode? white.W003 : black.B001,
+        color: white.W003,
         fontFamily: 'montel',
         fontSize: 12,
         width: '80%',
@@ -205,19 +204,19 @@ export const styles = StyleSheet.create({
     vermodaltitle: {
         fontFamily: 'monthe',
         fontSize: 35,
-        color: mode? white.W003 : black.B001,
+        color: white.W003,
     },
     vermodaltext:{
         textAlign: 'center',
         fontSize: 13,
         fontFamily: 'montel',
         marginVertical: 10,
-        color: mode? white.W003 : black.B001,
+        color: white.W003,
     },
     vermodalemail:{
         fontFamily: 'monthe',
         fontSize: 13,
-        color: mode? white.W003 : success.G001,
+        color: success.G001,
     },
     exitbutton:{
         top: 20,
@@ -251,8 +250,7 @@ export const styles = StyleSheet.create({
     assessmenttext: {
         fontFamily: 'monthe',
         fontSize: 70,
-        // color: mode? white.W003 : black.B001,
-        color: 'white'
+        color: white.W003,
     },
     radioButtonContainer: {
         flexDirection: "row",
@@ -288,8 +286,39 @@ export const styles = StyleSheet.create({
         height: 50, 
         elevation: 5, 
         borderRadius: 15, 
-        backgroundColor: mode ? errors.main : theme.secondary
+        backgroundColor: errors.main
+    },
+    descriptiontext: {
+        width: '90%', 
+        fontFamily: 'montel', 
+        fontSize: 16, 
+        paddingBottom: 10, 
+        color: white.main
+    },
+    resulttext: {
+        fontFamily: 'monthe', 
+        fontSize: 30, 
+        textAlign: 'left', 
+        margin: 10, 
+        color: white.main 
+    },
+    imagecontainer: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        alignSelf: 'center',
+        width: '100%',
+        height: '100%',
+        borderRadius: 20,
+    },
+    homecontent: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        alignSelf: 'center',
+        width: '90%',
+        height: 200,
+        marginVertical: 10,
     }
+
 
 
 })
