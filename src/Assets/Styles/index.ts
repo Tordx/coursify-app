@@ -297,7 +297,7 @@ export const styles = StyleSheet.create({
     },
     resulttext: {
         fontFamily: 'monthe', 
-        fontSize: 30, 
+        fontSize: 25, 
         textAlign: 'center',
         padding: 10,
         width: '100%',
