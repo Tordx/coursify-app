@@ -588,6 +588,12 @@ export const strand = ["N/A","ABM", "STEM", "CCS", "HUMSS", "GAS", "TVL"]
 
     "SCHOOL OF INFORMATION TECHNOLOGY": require('../Images/BSIT.jpg'),
     "SCHOOL OF ENGINEERING": require('../Images/CIVENG.jpg'),
-    "SCHOOL OF TEACHER EDUCATION": require('../Images/TEACHINGS.jpg')
-
+    "SCHOOL OF TEACHER EDUCATION": require('../Images/TEACHINGS.jpg'),
+    "BACHELOR OF SCIENCE IN COMPUTER SCIENCE": require('../Images/BSCS.jpg'),
+    "BACHELOR OF SCIENCE IN INFORMATION TECHNOLOGY": require('../Images/BSIT.jpg'),
+    "BACHELOR OF SCIENCE IN CIVIL ENGINEERING": require('../Images/CIVENG.jpg'),
+    "BACHELOR OF SCIENCE IN ELECTRONICS ENGINEERING": require('../Images/NICENG.jpg'),
+    "BACHELOR OF SCIENCE IN ELECTRICAL ENGINEERING": require('../Images/ELECENG.jpeg'),
+    "BACHELOR OF SCIENCE IN COMPUTER ENGINEERING": require('../Images/COMENG.jpg'),
+    "BACHELOR OF SCIENCE IN MECHANICAL ENGINEERING": require('../Images/MECHENG.jpg'),
   }
