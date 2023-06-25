@@ -1,7 +1,7 @@
 import { View, Text, Image, BackHandler, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { Tabs } from '../../App'
-import Home from '../Screens/Home/Home'
+import Home from '../Screens/Home/home'
 import Assessment from '../Screens/Home/assessment'
 import Results from '../Screens/Home/results'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
@@ -20,7 +20,14 @@ const Bottomtabs = (props: Props) => {
   const navigation = useNavigation()
 
   const user = firebase.auth().currentUser
-  const name  = user?.displayName
+  let firstname = user?.displayName ?? "";
+  let words: string[] = firstname.split(' ');
+
+if (words[words.length - 1] === "2") {
+  firstname = words.slice(0, -1).join(' ');
+}
+
+console.log(firstname);
 
   useFocusEffect(() => {
     const Back = () => {
@@ -46,12 +53,11 @@ const Bottomtabs = (props: Props) => {
   return (
    <>
    <View style = {{height: 75, width: '100%', backgroundColor: theme.dark, justifyContent: 'center', alignItems: 'center',}}>
-    <View style = {{width: '95%', justifyContent: 'flex-start', alignItems: 'flex-start', flexDirection: 'row'}}>
-      <Text style = {styles.headername}>Hello {name}! </Text>
+    <View style = {{width: '95%', justifyContent: 'flex-start', alignItems: 'flex-start', flexDirection: 'row', }}>
+      <Text style = {styles.headername}>HELLO {firstname?.toUpperCase()}! </Text>
       <View style = {styles.headerprofilecontainer}>
       <TouchableOpacity onPress={logout}  style={{ flexDirection: 'row', alignItems: 'center' }}>
-      <Icon name="logout" size={30} color="white" style={{ marginRight: 8 }} />
-      {/* <Text style={{ fontSize: 16, fontWeight: 'bold' }}>Logout</Text> */}
+      <Icon name="exit-to-app" size={30} color= {errors.M003} style={{ marginRight: 8, marginBottom: 5 }} />
     </TouchableOpacity>
       </View>
     </View>
