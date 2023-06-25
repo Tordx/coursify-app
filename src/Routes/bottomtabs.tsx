@@ -1,4 +1,4 @@
-import { View, Text, Image, BackHandler } from 'react-native'
+import { View, Text, Image, BackHandler, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { Tabs } from '../../App'
 import Home from '../Screens/Home/Home'
@@ -9,12 +9,15 @@ import { black, errors, mode, theme, white } from '../Assets/Colors'
 import { styles } from '../Assets/Styles'
 import auth, { firebase } from '@react-native-firebase/auth';
 import { useFocusEffect } from '@react-navigation/native'
+import { useNavigation } from '@react-navigation/native'
 
 type Props = {}
 
 // const name = 'Juan'
 
 const Bottomtabs = (props: Props) => {
+
+  const navigation = useNavigation()
 
   const user = firebase.auth().currentUser
   const name  = user?.displayName
@@ -27,6 +30,18 @@ const Bottomtabs = (props: Props) => {
     const handler = BackHandler.addEventListener('hardwareBackPress', Back);
     return () => handler.remove();
   })
+  const logout = async() => {
+
+    try {
+      await auth().signOut();
+      navigation.navigate('Login' as never)
+      console.log('User logged out successfully');
+      // Perform any additional logout logic or navigation here
+    } catch (error) {
+      console.log('Error logging out:', error);
+    }
+  }
+
 
   return (
    <>
@@ -34,7 +49,10 @@ const Bottomtabs = (props: Props) => {
     <View style = {{width: '95%', justifyContent: 'flex-start', alignItems: 'flex-start', flexDirection: 'row'}}>
       <Text style = {styles.headername}>Hello {name}! </Text>
       <View style = {styles.headerprofilecontainer}>
-      <Image source={require('../Assets/Images/12.jpg')} style = {styles.headerprofile}/>
+      <TouchableOpacity onPress={logout}  style={{ flexDirection: 'row', alignItems: 'center' }}>
+      <Icon name="logout" size={30} color="white" style={{ marginRight: 8 }} />
+      {/* <Text style={{ fontSize: 16, fontWeight: 'bold' }}>Logout</Text> */}
+    </TouchableOpacity>
       </View>
     </View>
    </View>

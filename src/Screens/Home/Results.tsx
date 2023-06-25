@@ -7,6 +7,8 @@ import { firebase } from '@react-native-firebase/auth'
 import { errors, theme, white } from '../../Assets/Colors'
 import { useNavigation } from '@react-navigation/native'
 import { LoadingModal } from '../../Partials/Global/modals'
+import { useDispatch } from 'react-redux'
+import { setschooltitle } from '../../Library/Redux-actions/courseslice'
 
 type Props = {}
 
@@ -18,6 +20,7 @@ const Results = (props: Props) => {
   const [userdata, setuserdata] = useState<Data[]>();
   const uid = firebase.auth().currentUser?.uid
   const navigation = useNavigation()
+  const dispatch = useDispatch()
   
   const fetchData = async () => {
     console.log(uid);
@@ -46,6 +49,16 @@ const Results = (props: Props) => {
     setrfreshing(false)
   }
 
+  const handleItemClick = async (item: string) => {
+    // Execute your desired function or code when an item is clicked
+    console.log('====================================item');
+    console.log(item);
+    dispatch(setschooltitle(item))
+    console.log('====================================item');
+    navigation.navigate('AssessmentCourseOverview' as never)
+
+  };
+
   const renderedItem = ({item}: {item: Data}) => {
     return(
       <>
@@ -56,11 +69,13 @@ const Results = (props: Props) => {
                 const keyString = key;
                 const numberValue = string;
                 return (
+                  <TouchableOpacity onPress={() => {handleItemClick(numberValue)}}>
                   <Text
                     key={index}
                     style={styles.resulttext}
                   >{numberValue}
                   </Text>
+                  </TouchableOpacity>
                 );
               })}
       </View>
@@ -80,7 +95,7 @@ const Results = (props: Props) => {
       style = {{}}
       data = {data}
       renderItem={renderedItem}
-      keyExtractor={(item) => item.userid}
+      keyExtractor={(item) => item.uid}
       refreshControl={
         <RefreshControl
           onRefresh={refreshdata}

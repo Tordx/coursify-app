@@ -8,7 +8,7 @@ import { setschooling } from '../../Library/Redux-actions/schoolingslice'
 import { school } from '../../Assets/Constants'
 import firestore from '@react-native-firebase/firestore'
 import { firebase } from '@react-native-firebase/auth'
-import { getAllData } from '../../Library/Firebase'
+import { getAllData , getSpecificData } from '../../Library/Firebase'
 import { LoadingModal } from '../../Partials/Global/modals'
 type Props = {}
 
@@ -19,15 +19,23 @@ const Assessment = (props: Props) => {
 
   const navigation = useNavigation()
   const [loading, setloading] = useState(false)
-  const [data, setdata] = useState<Data[]>([]);
-  const id = firebase.auth().currentUser
+  const [taken, settaken] = useState<boolean>(false);
+  // const [data, setdata] = useState<Data[]>([]);
+  const uid = firebase.auth().currentUser?.uid
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         setloading(true)
-        const retrievedData: Data[] = await getAllData('assessment');
-        setdata(retrievedData);
+        const currentuserdata: Data[] = await getSpecificData('assessment','userid', uid as string);
+        if(currentuserdata.length !== 0){
+          settaken(true)
+        }
+        console.log('====================================currentuserdata');
+        console.log(currentuserdata.length);
+        console.log('====================================currentuserdata');
+        // setdata(currentuserdata);
+        // settaken(currentuserdata.length === 0);
         setloading(false)
       } catch (error) {
         console.log('Error fetching data:', error);
@@ -40,7 +48,7 @@ const Assessment = (props: Props) => {
   
   return (
     <View style = {styles.container}>
-     {data ?  <>
+     {taken ?  <>
      <Text style = {styles.assessmenttext}>You already took the assessment
      </Text>
      <View style = {{width: '90%', paddingHorizontal: 15, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center',}}>
