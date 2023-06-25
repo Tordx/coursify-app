@@ -10,6 +10,7 @@ import {AlertModal, LoadingModal} from '../../Partials/Global/modals';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { login } from '../../Library/Logins';
 import { loginauth } from '../../Library/Firebase';
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 const Login = () => {
 
@@ -44,6 +45,7 @@ const Login = () => {
           settitle('Checking credentials, please wait...');
           setopenloginmodal(true);
           await loginauth(email, password, navigation);
+          await AsyncStorage.setItem('login', JSON.stringify({email, password}))
           setopenloginmodal(false);
           setemail('')
           setpassword('')
