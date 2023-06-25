@@ -1,4 +1,4 @@
-import { ActivityIndicator, Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { ActivityIndicator, Pressable, RefreshControl, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { styles } from '../../Assets/Styles'
 import { getSpecificData, getAllData, Data } from '../../Library/Firebase'
@@ -13,6 +13,7 @@ type Props = {}
 const Results = (props: Props) => {
 
   const [loading, setloading] = useState(false);
+  const [refreshing, setrfreshing] = useState(false)
   const [data, setdata] = useState<Data[]>([]);
   const [userdata, setuserdata] = useState<Data[]>();
   const uid = firebase.auth().currentUser?.uid
@@ -23,12 +24,13 @@ const Results = (props: Props) => {
     
     try {
       setloading(true)
-      const retrievedData: Data[] = await getAllData('assessment');
-      const currentuserdata: Data[] = await getSpecificData('Users','userid', uid as string);
-      setdata(retrievedData);
-      setuserdata(currentuserdata)
-      console.log(currentuserdata);
+      const currentuserdata: Data[] = await getSpecificData('assessment','userid', uid as string);
+      setdata(currentuserdata);
+      console.log('this was retreieved');
+      console.log('this was retreieved');
       
+      console.log(currentuserdata);
+      console.log('this was retreieved');
       setloading(false)
     } catch (error) {
       console.log('Error fetching data:', error);
@@ -38,10 +40,14 @@ const Results = (props: Props) => {
 
   useEffect(() => {
     fetchData();
+    console.log(userdata);
+    
   }, []);
 
-  const handlePRess = (item: Data) => {
-
+  const refreshdata = () => {
+    setrfreshing(true)
+    fetchData()
+    setrfreshing(false)
   }
 
   const renderedItem = ({item}: {item: Data}) => {
@@ -79,6 +85,12 @@ const Results = (props: Props) => {
       data = {data}
       renderItem={renderedItem}
       keyExtractor={(item) => item.userid}
+      refreshControl={
+        <RefreshControl
+          onRefresh={refreshdata}
+          refreshing = {refreshing}
+        />
+      }
 
       />
     <Pressable style = {[styles.getstarted, {marginBottom: 30}]} onPress={() => {navigation.navigate('Questionaires' as never)}}>
