@@ -10,6 +10,7 @@ import { styles } from '../Assets/Styles'
 import auth, { firebase } from '@react-native-firebase/auth';
 import { useFocusEffect } from '@react-navigation/native'
 import { useNavigation } from '@react-navigation/native'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 type Props = {}
 
@@ -40,8 +41,10 @@ console.log(firstname);
   const logout = async() => {
 
     try {
-      await auth().signOut();
-      navigation.navigate('Login' as never)
+      await auth().signOut().then(async() => {
+        await AsyncStorage.clear()
+        navigation.navigate('Login' as never)
+      })
       console.log('User logged out successfully');
       // Perform any additional logout logic or navigation here
     } catch (error) {
