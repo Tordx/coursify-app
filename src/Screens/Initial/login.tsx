@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth';
 import { Input } from '../../Partials/Global/fields';
 import { styles } from '../../Assets/Styles';
-import { black, errors, mode, theme, white } from '../../Assets/Colors';
+import { black, errors, mode, success, theme, white } from '../../Assets/Colors';
 import { appname } from '../../Assets/Constants';
 import { LoginButton } from '../../Partials/Global/buttons';
 import {AlertModal, LoadingModal} from '../../Partials/Global/modals';
@@ -18,7 +18,7 @@ const Login = () => {
   const [title, settitle] = useState('');
   const [openloginmodal, setopenloginmodal] = useState(false);
   const [alertmodal, setalertmodal] = useState(false);
-  const [checksecu, setchecksecu] = useState(false)
+  const [checksecu, setchecksecu] = useState(true)
   const navigation = useNavigation();
   
 
@@ -75,16 +75,15 @@ const Login = () => {
       <Text style = {styles.appname}> {appname.toUpperCase()} </Text>
       <Input
         name = 'email-outline'
-        placeholderTextColor={'white'}
-        // placeholderTextColor={mode ? white.W001 : black.B005}
+        placeholderTextColor={white.main}
         placeholder='Email Address'
         value={email}
+        secureTextEntry = {false}
         onChangeText={(value) => setemail(value)}
       />
        <Input
         name = 'lock-outline'
-        placeholderTextColor={'white'}
-        // placeholderTextColor={mode ? white.W001 : black.B005}
+        placeholderTextColor={white.main}
         placeholder='Password'
         secureTextEntry = {checksecu}
         value = {password}
@@ -95,7 +94,7 @@ const Login = () => {
       <Pressable onPress={() => {navigation.navigate('Reset' as never)}}
         style = {styles.forgottenpassword}
       >
-        <Text style = {[styles.signupbutton, {color: mode ?  errors.main: errors.A002}]}>Forgotten Password?</Text>
+        <Text style = {[styles.signupbutton, {color: errors.W001}]}>Forgotten Password?</Text>
       </Pressable>
       <LoginButton
         title = 'Sign In'
@@ -103,7 +102,7 @@ const Login = () => {
       />
       <Pressable onPress={() => {navigation.navigate('Verify' as never)}}>
         <Text style = {styles.signupbutton}>Don't have an account yet? 
-          <Text style = {{color: black.main}}> Sign up</Text>
+          <Text style = {{color: success.G006}}> Sign up</Text>
         </Text>
       </Pressable>
       <LoadingModal

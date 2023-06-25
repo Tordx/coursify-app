@@ -10,7 +10,7 @@ import { useDispatch } from 'react-redux';
 import { setcourse } from '../../Library/Redux-actions/courseslice';
 import { setschooltitle } from '../../Library/Redux-actions/courseslice';
 import { imageset } from '../../Assets/Constants';
-import { theme, white } from '../../Assets/Colors';
+import { errors, theme, white } from '../../Assets/Colors';
 const Home = () => {
 
   const [data, setData] = useState<Data[]>([]);
@@ -58,7 +58,7 @@ const Home = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={{ fontSize: 30, fontWeight: 'bold' , textAlign: 'center' , margin: 10 , color: 'white' }}>SCHOOLS</Text>
+      <Text style={{ fontSize: 50, fontFamily: 'monthe', textAlign: 'center' , margin: 10 , color: errors.main }}>SCHOOL LIST</Text>
       <FlatList
       style = {{width: '100%', height: '100%'}}
         data={data}
