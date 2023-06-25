@@ -1,35 +1,28 @@
 import React, { useState , useEffect } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Image } from 'react-native';
 import { styles } from '../../Assets/Styles';
 import { Data } from '../../Library/Firebase';
 import { useSelector } from 'react-redux';
 import { getSpecificData } from '../../Library/Firebase';
+import { imageset } from '../../Assets/Constants';
+import { useNavigation } from '@react-navigation/native';
+import { errors, white } from '../../Assets/Colors';
+import { TopExit } from '../../Partials/Global/buttons';
 
 const AssessmentCourseOverview = () => {
 
     const [data, setdata] = useState<Data[]>([]);
-
+    const navigation = useNavigation()
 
     const schooltitle = useSelector((action: Data) => action._course.schooltitle);
-    console.log('====================================schooltitle');
     console.log(schooltitle);
-    console.log('====================================schooltitle');
 
     useEffect(() => {
         const fetchData = async () => {
           try {
-            // setloading(true)
             const currentuserdata: Data[] = await getSpecificData('realcourse','course', schooltitle as string);
-            // if(currentuserdata.length !== 0){
-            //   settaken(true)
-            // }
             setdata(currentuserdata)
-            console.log('====================================currentuserdata');
             console.log(currentuserdata);
-            console.log('====================================currentuserdata');
-            // setdata(currentuserdata);
-            // settaken(currentuserdata.length === 0);
-            // setloading(false)
           } catch (error) {
             console.log('Error fetching data:', error);
           }
@@ -37,21 +30,23 @@ const AssessmentCourseOverview = () => {
     
         fetchData();
       }, []);
-
-//  console.log('====================================data');
-//  console.log(data[0].description);
-//  console.log('====================================data');
+    const imagesource = imageset[schooltitle]
     
   return (
     <View style={styles.container}>
-        <Text style={{ fontSize: 25, fontWeight: 'bold' , textAlign: 'center' , margin: 13 , color: 'white' }}>Assessment Course Overview</Text>
-        <Text style={{ fontSize: 20, fontWeight: 'normal' , textAlign: 'center' , margin: 5 , color: 'white' }}>{data.length > 0 ? data[0].school : ''}</Text>
-
-        <Text style={{ fontSize: 20, fontWeight: 'bold' , textAlign: 'center' , margin: 6 , color: 'white' }}>{schooltitle}</Text>
-        <Text style={{ fontSize: 20, fontWeight: 'normal' , textAlign: 'center' , margin: 5 , color: 'white' }}>{data.length > 0 ? data[0].description : ''}</Text>
-
+        <View style = {{position: 'absolute', top: 0, width: '100%'}}>
+        <Image source = {imagesource} style = {{ width: '100%', height: 300}} resizeMode='cover' />
+        <Text style={{ fontSize: 50, fontFamily: 'monthe' , textAlign: 'center' , marginTop: 8 , color: errors.main, textDecorationLine: 'underline'}}>OVERVIEW</Text>
+        <Text style={{ fontSize: 20, fontFamily: 'monthe' , textAlign: 'center' , marginBottom: 8 , color: white.main }}>{data.length > 0 ? data[0].school : ''}</Text>
+        <Text style={{ fontSize: 50, fontFamily: 'monthe' , textAlign: 'left' , margin: 6 , color: 'white', paddingLeft: 10 }}>{schooltitle}</Text>
+        <Text style={{ fontSize: 30, fontFamily: 'montel' , textAlign: 'left' , margin: 5 , color: 'white' }}>{data.length > 0 ? data[0].description : ''}</Text>
+        </View>
+        <TopExit
+        onPress={() => navigation.goBack()}
+      />
     </View>
   );
 };
+
 
 export default AssessmentCourseOverview;
