@@ -1,4 +1,4 @@
-import { View, Text, Image } from 'react-native'
+import { View, Text, Image, BackHandler } from 'react-native'
 import React from 'react'
 import { Tabs } from '../../App'
 import Home from '../Screens/Home/Home'
@@ -8,6 +8,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { black, errors, mode, theme, white } from '../Assets/Colors'
 import { styles } from '../Assets/Styles'
 import auth, { firebase } from '@react-native-firebase/auth';
+import { useFocusEffect } from '@react-navigation/native'
 
 type Props = {}
 
@@ -18,6 +19,14 @@ const Bottomtabs = (props: Props) => {
   const user = firebase.auth().currentUser
   const name  = user?.displayName
 
+  useFocusEffect(() => {
+    const Back = () => {
+      BackHandler.exitApp();
+      return true
+    };
+    const handler = BackHandler.addEventListener('hardwareBackPress', Back);
+    return () => handler.remove();
+  })
 
   return (
    <>
