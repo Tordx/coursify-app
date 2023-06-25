@@ -26,11 +26,7 @@ const Results = (props: Props) => {
       setloading(true)
       const currentuserdata: Data[] = await getSpecificData('assessment','userid', uid as string);
       setdata(currentuserdata);
-      console.log('this was retreieved');
-      console.log('this was retreieved');
-      
       console.log(currentuserdata);
-      console.log('this was retreieved');
       setloading(false)
     } catch (error) {
       console.log('Error fetching data:', error);
@@ -54,7 +50,7 @@ const Results = (props: Props) => {
     return(
       <>
       {data ? 
-      <View>
+      <View style = {{justifyContent: 'center', alignItems: 'center', height: 200}}>
               {
               Object.entries(data[0].schools).map(([key, [string, number]], index) => {
                 const keyString = key;
@@ -81,7 +77,7 @@ const Results = (props: Props) => {
       <Text style = {styles.descriptiontext}>Here are the top 2 choice of course to enroll to based on the result of your assessment</Text>
     </View>
       <FlatList
-      style = {{marginTop: 25}}
+      style = {{}}
       data = {data}
       renderItem={renderedItem}
       keyExtractor={(item) => item.userid}
