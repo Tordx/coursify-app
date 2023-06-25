@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, ScrollView } from 'react-native';
 import { styles } from '../../Assets/Styles';
 import { Data } from '../../Library/Firebase';
 import { useSelector } from 'react-redux';
@@ -15,14 +15,17 @@ const CourseOverView = () => {
     const imagesource = imageset[schooltitle.course]
   return (
     <View style={styles.container}>
-        <View style = {{position: 'absolute', top: 0, width: '100%'}}>
+      <ScrollView style = {{width: '100%', height: '100%',}}>
+        <View style = {{ width: '100%', height: '100%'}}>
         <Image source = {imagesource} style = {{ width: '100%', height: 300}} resizeMode='cover' />
         <Text style={{ fontSize: 50, fontFamily: 'monthe' , textAlign: 'center' , marginTop: 8 , color: errors.main, textDecorationLine: 'underline'}}>OVERVIEW</Text>
         <Text style={{ fontSize: 20, fontFamily: 'monthe' , textAlign: 'center' , marginBottom: 8 , color: 'white' }}>{schooltitle.school}</Text>
         <Text style={{ fontSize: 50, fontFamily: 'monthe' , textAlign: 'left' , margin: 6 , color: 'white', paddingLeft: 10 }}>{schooltitle.course}</Text>
-        <Text style={{ fontSize: 30, fontFamily: 'montel' , textAlign: 'left' , margin: 5 , color: 'white' }}>{schooltitle.description}</Text>
+        <Text style={{ fontSize: 30, fontFamily: 'montel' , textAlign: 'left' , margin: 5 , marginHorizontal: 10, color: 'white' }}>{schooltitle.description}</Text>
         </View>
-        <TopExit
+      </ScrollView>
+      
+      <TopExit
         onPress={() => navigation.goBack()}
       />
     </View>
