@@ -12,6 +12,7 @@ import Reset from '../Screens/Initial/reset'
 import Questionaires from '../Screens/contents/questionaires'
 import Courselist from '../Screens/contents/Courselist'
 import CourseOverView from '../Screens/contents/CourseOverview'
+import AssessmentCourseOverview from '../Screens/contents/AssessmentCourseOverview'
 
 type Props = {}
 
@@ -88,6 +89,14 @@ const Stacks = (props: Props) => {
                 <Stack.Screen
         name = 'CourseOverview'
         component = {CourseOverView}
+        options={{
+          headerShown: false,
+          cardStyleInterpolator: CardStyleInterpolators.forFadeFromBottomAndroid,
+        }}
+      />
+                    <Stack.Screen
+        name = 'AssessmentCourseOverview'
+        component = {AssessmentCourseOverview}
         options={{
           headerShown: false,
           cardStyleInterpolator: CardStyleInterpolators.forFadeFromBottomAndroid,

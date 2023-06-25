@@ -1,13 +1,14 @@
-import { View, Text, Image } from 'react-native'
+import { View, Text, Image , TouchableOpacity } from 'react-native'
 import React from 'react'
 import { Tabs } from '../../App'
 import Home from '../Screens/Home/Home'
-import Assessment from '../Screens/Home/assessment'
-import Results from '../Screens/Home/results'
+import Assessment from '../Screens/Home/Assessment'
+import Results from '../Screens/Home/Results'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { black, errors, mode, theme, white } from '../Assets/Colors'
 import { styles } from '../Assets/Styles'
 import auth, { firebase } from '@react-native-firebase/auth';
+import { useNavigation } from '@react-navigation/native'
 
 type Props = {}
 
@@ -15,8 +16,22 @@ type Props = {}
 
 const Bottomtabs = (props: Props) => {
 
+  const navigation = useNavigation()
+
   const user = firebase.auth().currentUser
   const name  = user?.displayName
+
+  const logout = async() => {
+
+    try {
+      await auth().signOut();
+      navigation.navigate('Login' as never)
+      console.log('User logged out successfully');
+      // Perform any additional logout logic or navigation here
+    } catch (error) {
+      console.log('Error logging out:', error);
+    }
+  }
 
 
   return (
@@ -25,7 +40,10 @@ const Bottomtabs = (props: Props) => {
     <View style = {{width: '95%', justifyContent: 'flex-start', alignItems: 'flex-start', flexDirection: 'row'}}>
       <Text style = {styles.headername}>Hello {name}! </Text>
       <View style = {styles.headerprofilecontainer}>
-      <Image source={require('../Assets/Images/12.jpg')} style = {styles.headerprofile}/>
+      <TouchableOpacity onPress={logout}  style={{ flexDirection: 'row', alignItems: 'center' }}>
+      <Icon name="logout" size={30} color="white" style={{ marginRight: 8 }} />
+      {/* <Text style={{ fontSize: 16, fontWeight: 'bold' }}>Logout</Text> */}
+    </TouchableOpacity>
       </View>
     </View>
    </View>

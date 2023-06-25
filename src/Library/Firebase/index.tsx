@@ -8,6 +8,7 @@ export interface Data {
   id: string;
   displayName: string,
   userid: string,
+  uid: string,
   school: string,
   schools: string,
   description: string,
@@ -116,8 +117,9 @@ export const loginauth = async(email: string, password: string, navigation: any)
   
   export const createAssessment = async (navigation: any, score: any) => {
     const serverTimestamp = firestore.FieldValue.serverTimestamp();
-    const uid = firestore().collection('assessment').doc().id;
+    // const uid = firestore().collection('assessment').doc().id;
     const user = firebase.auth().currentUser;
+    const uid = firebase.auth().currentUser?.uid;
 
     const keys = Object.keys(score);
     const firstKey = keys[0];

@@ -45,6 +45,8 @@ const Login = () => {
           setopenloginmodal(true);
           await loginauth(email, password, navigation);
           setopenloginmodal(false);
+          setemail('')
+          setpassword('')
         } catch (error: any) {
           if (error.code === 'auth/invalid-email') {
             console.log('That email address is invalid!');
