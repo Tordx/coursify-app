@@ -90,7 +90,7 @@ export const TopExit = (props: Props) => {
     >
       <Icon
         name = 'chevron-left'
-        color={backgroundmode ? white.W002 : black.B002}
+        color={white.W002}
         size={40}
       />
     </Pressable>
