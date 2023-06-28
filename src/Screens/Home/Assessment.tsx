@@ -31,11 +31,6 @@ const Assessment = (props: Props) => {
         if(currentuserdata.length !== 0){
           settaken(true)
         }
-        console.log('====================================currentuserdata');
-        console.log(currentuserdata.length);
-        console.log('====================================currentuserdata');
-        // setdata(currentuserdata);
-        // settaken(currentuserdata.length === 0);
         setloading(false)
       } catch (error) {
         console.log('Error fetching data:', error);
