@@ -16,6 +16,7 @@ const Results = (props: Props) => {
 
   const [loading, setloading] = useState(false);
   const [refreshing, setrfreshing] = useState(false)
+  const [taken, settaken] = useState(false)
   const [data, setdata] = useState<Data[]>([]);
   const [userdata, setuserdata] = useState<Data[]>();
   const uid = firebase.auth().currentUser?.uid
@@ -29,6 +30,9 @@ const Results = (props: Props) => {
       setloading(true)
       const currentuserdata: Data[] = await getSpecificData('assessment','userid', uid as string);
       setdata(currentuserdata);
+      if(currentuserdata.length !== 0){
+        settaken(true)
+      }
       console.log(currentuserdata);
       setloading(false)
     } catch (error) {
@@ -99,9 +103,16 @@ const Results = (props: Props) => {
       }
 
       />
-    <Pressable style = {[styles.getstarted, {marginBottom: 30}]} onPress={() => {navigation.navigate('Questionaires' as never)}}>
+       {taken ? <Pressable style = {[styles.getstarted, {marginBottom: 30}]} onPress={() => {navigation.navigate('Questionaires' as never)}}>
           <Text style = {[styles.alertmodaltext, {fontFamily: 'monthe'}]}>RETAKE</Text>
-        </Pressable>
+        </Pressable> : 
+        <>
+         <Text style = {[styles.assessmenttext, {color: white.W001}]}>NO RESULTS: YOU HAVE NOT TAKEN THE ASSESSMENT YET</Text>
+        <Pressable style = {[styles.getstarted, {marginBottom: 30}]} onPress={() => {navigation.navigate('Questionaires' as never)}}>
+        <Text style = {[styles.alertmodaltext, {fontFamily: 'monthe'}]}>GET STARTED</Text>
+        </Pressable> 
+      </>
+      }
         <LoadingModal
         visible = {loading}
         title = 'Checking Results'
