@@ -24,7 +24,7 @@ const Reset = (props: Props) => {
       if (email) {
       await firebase.auth().sendPasswordResetEmail(email).then((response: any) => {
         console.log('sent password')
-        settitle('Password reset Link sent')
+        settitle('Password reset link sent')
         setsuccess(true)
         
 
