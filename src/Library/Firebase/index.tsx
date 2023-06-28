@@ -2,6 +2,7 @@ import auth, { firebase } from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import { school } from '../../Assets/Constants';
 import { useSelector } from 'react-redux';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export interface Data {
   // Define the structure of your data
@@ -31,6 +32,8 @@ export const loginauth = async(email: string, password: string, navigation: any)
           if (user.displayName === null) {
             navigation.navigate('Signup' as never)
           } else {
+            
+            await AsyncStorage.setItem('login', JSON.stringify({email, password}))
             navigation.navigate('Bottomtabs' as never)
             return userCredential.user
           }
