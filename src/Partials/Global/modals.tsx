@@ -1,7 +1,7 @@
 import { View, Text, Modal, ActivityIndicator, Pressable } from 'react-native'
 import React from 'react'
 import { styles } from '../../Assets/Styles'
-import { errors, mode, success, theme } from '../../Assets/Colors'
+import { errors, mode, success, theme, white } from '../../Assets/Colors'
 import Icon from 'react-native-vector-icons/Ionicons'
 import { LoginButton } from './buttons'
 
@@ -59,7 +59,7 @@ export const AlertModal = (props: Props) => {
             <Icon
             name = 'close-circle-outline'            
             size={40}
-            color = {errors.A002}
+            color = {white.W002}
             />
             </Pressable>
         </View>
@@ -90,7 +90,7 @@ export const SuccessModal = (props: Props) => {
           <Icon
           name = 'close-circle-outline'            
           size={40}
-          color = {errors.A002}
+          color = {white.W002}
           />
           </Pressable>
       </View>
