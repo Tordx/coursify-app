@@ -1,6 +1,6 @@
 import { View, Text, Pressable, Image, Modal, BackHandler } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth';
+import auth, { FirebaseAuthTypes, firebase } from '@react-native-firebase/auth';
 import { Input } from '../../Partials/Global/fields';
 import { styles } from '../../Assets/Styles';
 import { black, errors, mode, success, theme, white } from '../../Assets/Colors';
@@ -21,7 +21,7 @@ const Login = () => {
   const [alertmodal, setalertmodal] = useState(false);
   const [checksecu, setchecksecu] = useState(true)
   const navigation = useNavigation();
-  
+  const user = firebase.auth().currentUser
 
   useFocusEffect(() => {
     const Back = () => {
@@ -45,7 +45,6 @@ const Login = () => {
           settitle('Checking credentials, please wait...');
           setopenloginmodal(true);
           await loginauth(email, password, navigation);
-          await AsyncStorage.setItem('login', JSON.stringify({email, password}))
           setopenloginmodal(false);
           setemail('')
           setpassword('')
@@ -72,7 +71,7 @@ const Login = () => {
       <Image
         source={require('../../Assets/Images/loginpic.png')}
         resizeMode='contain'
-        style = {{width: 400, height: '25%', alignSelf: 'center', marginBottom: 10}}
+        style = {{width: 400, height: '25%', alignSelf: 'center', marginBottom: 10, shadowRadius: 5, shadowColor: white.W001}}
       />
       <Text style = {styles.appname}> {appname.toUpperCase()} </Text>
       <Input

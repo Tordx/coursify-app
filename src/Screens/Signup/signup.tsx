@@ -90,7 +90,7 @@ const Signup = (props: Props) => {
   }
   console.log(time);
    return
-})
+  })
 
 
 const timecount = (count: number) => {
@@ -110,7 +110,7 @@ const timecount = (count: number) => {
   const checkAuth = () => {
     console.log('I am Pressed');
     
-    setmodal(true);
+    setvermodal(true);
     if (user && user.emailVerified) {
       settitle('Email successfully verified')
       setsuccess(true)
@@ -128,6 +128,7 @@ const timecount = (count: number) => {
   const reverify = () => {
     
     settime(31)
+    timecount(1000)
     user?.sendEmailVerification()
   } 
 
